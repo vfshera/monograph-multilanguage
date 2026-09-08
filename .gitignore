@@ -18,7 +18,7 @@ dist-ssr
 *.local
 
 # Internal release/workflow notes
-AGENTS.md
+
 RELEASE_CHECKLIST.md
 
 # Ghost theme kept locally as a design reference, not part of this theme
