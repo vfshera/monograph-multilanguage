@@ -42,5 +42,15 @@
     "socialRssLabel": "خلاصة RSS",
     "socialOnLabel": "{siteName} على {label}",
     "builtWithPrefix": "مبني باستخدام"
+  },
+  "newsletter": {
+    "title": "احصل على منشورات جديدة عبر البريد الإلكتروني",
+    "description": "رسالة بريد واحدة عند نشر شيء جديد. لا بريد عشوائي، يمكنك إلغاء الاشتراك في أي وقت.",
+    "emailLabel": "عنوان البريد الإلكتروني",
+    "emailPlaceholder": "you@example.com",
+    "subscribe": "اشترك",
+    "comingSoon": "قريباً",
+    "disabledNote": "تم تعطيل التسجيل حتى يتم تكوين مزود الخدمة.",
+    "demoMessage": "شكراً. هذا النموذج التجريبي غير متصل بأي مزود بعد، لذا لم يتم إرسال أي شيء."
   }
 }

@@ -42,5 +42,15 @@
     "socialRssLabel": "RSS feed",
     "socialOnLabel": "{siteName} on {label}",
     "builtWithPrefix": "Built with"
+  },
+  "newsletter": {
+    "title": "Get new posts by email",
+    "description": "One email when something new goes up. No spam, unsubscribe anytime.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "subscribe": "Subscribe",
+    "comingSoon": "Coming soon",
+    "disabledNote": "Signup is disabled until a newsletter provider is configured.",
+    "demoMessage": "Thanks. This demo form is not connected to a provider yet, so nothing was sent."
   }
 }

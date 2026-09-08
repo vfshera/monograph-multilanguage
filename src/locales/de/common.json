@@ -42,5 +42,15 @@
     "socialRssLabel": "RSS-Feed",
     "socialOnLabel": "{siteName} auf {label}",
     "builtWithPrefix": "Erstellt mit"
+  },
+  "newsletter": {
+    "title": "Neue Beiträge per E-Mail erhalten",
+    "description": "Eine E-Mail, wenn etwas Neues erscheint. Kein Spam, jederzeit abbestellen.",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "sie@beispiel.de",
+    "subscribe": "Abonnieren",
+    "comingSoon": "Demnächst",
+    "disabledNote": "Die Anmeldung ist deaktiviert, bis ein Newsletter-Anbieter eingerichtet ist.",
+    "demoMessage": "Danke. Dieses Demo-Formular ist noch nicht mit einem Anbieter verbunden, es wurde nichts gesendet."
   }
 }

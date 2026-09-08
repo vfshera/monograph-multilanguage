@@ -42,5 +42,15 @@
     "socialRssLabel": "RSS 订阅源",
     "socialOnLabel": "{siteName} 在 {label}",
     "builtWithPrefix": "使用以下技术构建"
+  },
+  "newsletter": {
+    "title": "通过电子邮件获取新文章",
+    "description": "有新内容时收到一封邮件。无垃圾邮件，随时可退订。",
+    "emailLabel": "电子邮件地址",
+    "emailPlaceholder": "you@example.com",
+    "subscribe": "订阅",
+    "comingSoon": "即将推出",
+    "disabledNote": "注册已禁用，直到配置新闻通讯提供商。",
+    "demoMessage": "感谢。此演示表单尚未连接到提供商，因此没有发送任何内容。"
   }
 }

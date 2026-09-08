@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "@/config/site";
+import { t } from "i18n:astro";
 
 /*
  * The compact subscribe form used once, in the home sidebar under the About
@@ -15,8 +16,8 @@ const isDemo = isEnabled && action.length === 0;
 ---
 
 <section id="newsletter" aria-labelledby="newsletter-heading">
-  <h3 id="newsletter-heading" class="text-base font-semibold tracking-tight">{newsletter.title}</h3>
-  <p class="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{newsletter.description}</p>
+  <h3 id="newsletter-heading" class="text-base font-semibold tracking-tight">{t("newsletter.title")}</h3>
+  <p class="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{t("newsletter.description")}</p>
 
   <form
     class="mt-5 grid gap-3"
@@ -24,19 +25,19 @@ const isDemo = isEnabled && action.length === 0;
     method={newsletter.method}
     data-newsletter-form={isDemo ? "" : undefined}
   >
-    <label class="sr-only" for="newsletter-email">Email address</label>
+    <label class="sr-only" for="newsletter-email">{t("newsletter.emailLabel")}</label>
     <input
       id="newsletter-email"
       required
       type="email"
       name={newsletter.emailFieldName}
       autocomplete="email"
-      placeholder="you@example.com"
+      placeholder={t("newsletter.emailPlaceholder")}
       disabled={!isEnabled}
       class="field"
     />
     <button type="submit" disabled={!isEnabled} class="btn btn-solid btn-block">
-      {isEnabled ? "Subscribe" : "Coming soon"}
+      {isEnabled ? t("newsletter.subscribe") : t("newsletter.comingSoon")}
     </button>
     <p
       class="newsletter-status text-xs leading-relaxed text-muted-foreground"
@@ -47,7 +48,7 @@ const isDemo = isEnabled && action.length === 0;
     </p>
     {!isEnabled && (
       <p class="text-xs leading-relaxed text-muted-foreground">
-        Signup is disabled until a newsletter provider is configured.
+        {t("newsletter.disabledNote")}
       </p>
     )}
   </form>
@@ -56,13 +57,14 @@ const isDemo = isEnabled && action.length === 0;
 {
   isDemo && (
     <script is:inline>
+      import { t } from "i18n:astro";
+
       document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
         form.addEventListener("submit", (event) => {
           event.preventDefault();
           const status = form.querySelector("[data-newsletter-status]");
           if (status) {
-            status.textContent =
-              "Thanks. This demo form is not connected to a provider yet, so nothing was sent.";
+            status.textContent = t("newsletter.demoMessage");
           }
           form.reset();
         });

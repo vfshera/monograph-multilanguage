@@ -26,8 +26,6 @@ export const siteConfig = {
     action: "",
     method: "post",
     emailFieldName: "email",
-    title: "Get new posts by email",
-    description: "One email when something new goes up. No spam, unsubscribe anytime.",
   },
   contact: {
     enabled: true,
