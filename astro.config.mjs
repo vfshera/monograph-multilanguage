@@ -9,6 +9,8 @@ import { codeThemes, codeDefaultColor } from "./src/config/code.ts";
 
 import mdx from "@astrojs/mdx";
 
+import i18n from "@astrolicious/i18n";
+
 const shikiConfig = /** @type {const} */ ({
   themes: codeThemes,
   defaultColor: codeDefaultColor,
@@ -21,6 +23,11 @@ export default defineConfig({
       filter: (page) => page !== new URL("/search/", siteConfig.siteUrl).toString(),
     }),
     mdx(),
+    i18n({
+      defaultLocale: "en",
+      locales: ["en", "ar", "zh-CN", "de"],
+      client: { translations: true, data: true },
+    }),
   ],
   markdown: {
     processor: unified({
