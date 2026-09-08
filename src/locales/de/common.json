@@ -1,0 +1,46 @@
+{
+  "header": {
+    "nav": {
+      "archive": "Archiv",
+      "categories": "Kategorien",
+      "about": "Über uns",
+      "primaryLabel": "Hauptnavigation",
+      "mobileLabel": "Mobile Navigation",
+      "menuDialogLabel": "Navigationsmenü",
+      "openMenu": "Navigationsmenü öffnen",
+      "closeMenu": "Navigationsmenü schließen"
+    },
+    "search": {
+      "toggleLabel": "Diese Website durchsuchen",
+      "formLabel": "Seitensuche",
+      "title": "{siteName} durchsuchen",
+      "label": "Beiträge durchsuchen",
+      "placeholder": "Beiträge, Kategorien, Autoren …",
+      "closeLabel": "Suche schließen",
+      "resultsHeading": "Ergebnisse",
+      "resultCount_one": "{count} Ergebnis für „{query}“.",
+      "resultCount_other": "{count} Ergebnisse für „{query}“.",
+      "empty": "Keine Beiträge passen dazu. Versuche es mit einem Titel, Thema oder Autor.",
+      "hintNavigate": "Navigieren",
+      "hintOpen": "Öffnen",
+      "hintToggle": "Umschalten",
+      "hintSubmit": "Enter durchsucht alles"
+    },
+    "theme": {
+      "switchToDark": "Dunkelmodus aktivieren",
+      "switchToLight": "Hellmodus aktivieren"
+    }
+  },
+  "footer": {
+    "nav": {
+      "contact": "Kontakt",
+      "privacy": "Datenschutz",
+      "rss": "RSS",
+      "label": "Fußnavigation"
+    },
+    "rights": "Alle Rechte vorbehalten.",
+    "socialRssLabel": "RSS-Feed",
+    "socialOnLabel": "{siteName} auf {label}",
+    "builtWithPrefix": "Erstellt mit"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "header": {
+    "nav": {
+      "archive": "归档",
+      "categories": "分类",
+      "about": "关于",
+      "primaryLabel": "主导航",
+      "mobileLabel": "移动导航",
+      "menuDialogLabel": "导航菜单",
+      "openMenu": "打开导航菜单",
+      "closeMenu": "关闭导航菜单"
+    },
+    "search": {
+      "toggleLabel": "搜索此网站",
+      "formLabel": "网站搜索",
+      "title": "搜索 {siteName}",
+      "label": "搜索文章",
+      "placeholder": "搜索文章、分类、作者……",
+      "closeLabel": "关闭搜索",
+      "resultsHeading": "搜索结果",
+      "resultCount_one": "{count} 个结果与“{query}”匹配。",
+      "resultCount_other": "{count} 个结果与“{query}”匹配。",
+      "empty": "暂时没有匹配的文章。试试搜索标题、主题或作者。",
+      "hintNavigate": "导航",
+      "hintOpen": "打开",
+      "hintToggle": "切换",
+      "hintSubmit": "按 Enter 搜索全部内容"
+    },
+    "theme": {
+      "switchToDark": "切换到深色模式",
+      "switchToLight": "切换到浅色模式"
+    }
+  },
+  "footer": {
+    "nav": {
+      "contact": "联系我们",
+      "privacy": "隐私",
+      "rss": "RSS",
+      "label": "页脚导航"
+    },
+    "rights": "版权所有。",
+    "socialRssLabel": "RSS 订阅源",
+    "socialOnLabel": "{siteName} 在 {label}",
+    "builtWithPrefix": "使用以下技术构建"
+  }
+}

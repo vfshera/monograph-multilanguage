@@ -1,0 +1,46 @@
+{
+  "header": {
+    "nav": {
+      "archive": "الأرشيف",
+      "categories": "التصنيفات",
+      "about": "من نحن",
+      "primaryLabel": "التنقل الرئيسي",
+      "mobileLabel": "التنقل على الهاتف المحمول",
+      "menuDialogLabel": "قائمة التنقل",
+      "openMenu": "فتح قائمة التنقل",
+      "closeMenu": "إغلاق قائمة التنقل"
+    },
+    "search": {
+      "toggleLabel": "البحث في هذا الموقع",
+      "formLabel": "البحث في الموقع",
+      "title": "البحث في {siteName}",
+      "label": "البحث في المنشورات",
+      "placeholder": "ابحث في المنشورات والتصنيفات والكتّاب…",
+      "closeLabel": "إغلاق البحث",
+      "resultsHeading": "النتائج",
+      "resultCount_one": "نتيجة واحدة لـ «{query}».",
+      "resultCount_other": "{count} نتائج لـ «{query}».",
+      "empty": "لا توجد منشورات مطابقة لذلك حتى الآن. جرّب عنوانًا أو موضوعًا أو اسم كاتب.",
+      "hintNavigate": "تنقّل",
+      "hintOpen": "فتح",
+      "hintToggle": "تبديل",
+      "hintSubmit": "Enter يبحث في كل شيء"
+    },
+    "theme": {
+      "switchToDark": "التبديل إلى الوضع الداكن",
+      "switchToLight": "التبديل إلى الوضع الفاتح"
+    }
+  },
+  "footer": {
+    "nav": {
+      "contact": "اتصل بنا",
+      "privacy": "الخصوصية",
+      "rss": "RSS",
+      "label": "تنقل التذييل"
+    },
+    "rights": "جميع الحقوق محفوظة.",
+    "socialRssLabel": "خلاصة RSS",
+    "socialOnLabel": "{siteName} على {label}",
+    "builtWithPrefix": "مبني باستخدام"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "header": {
+    "nav": {
+      "archive": "Archive",
+      "categories": "Categories",
+      "about": "About",
+      "primaryLabel": "Primary navigation",
+      "mobileLabel": "Mobile navigation",
+      "menuDialogLabel": "Navigation menu",
+      "openMenu": "Open navigation menu",
+      "closeMenu": "Close navigation menu"
+    },
+    "search": {
+      "toggleLabel": "Search this site",
+      "formLabel": "Site search",
+      "title": "Search {siteName}",
+      "label": "Search posts",
+      "placeholder": "Search posts, categories, authors…",
+      "closeLabel": "Close search",
+      "resultsHeading": "Results",
+      "resultCount_one": "{count} result for “{query}”.",
+      "resultCount_other": "{count} results for “{query}”.",
+      "empty": "No posts match that yet. Try a title, topic, or author.",
+      "hintNavigate": "Navigate",
+      "hintOpen": "Open",
+      "hintToggle": "Toggle",
+      "hintSubmit": "Enter searches everything"
+    },
+    "theme": {
+      "switchToDark": "Switch to dark mode",
+      "switchToLight": "Switch to light mode"
+    }
+  },
+  "footer": {
+    "nav": {
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "rss": "RSS",
+      "label": "Footer navigation"
+    },
+    "rights": "All rights reserved.",
+    "socialRssLabel": "RSS feed",
+    "socialOnLabel": "{siteName} on {label}",
+    "builtWithPrefix": "Built with"
+  }
+}
