@@ -41,7 +41,7 @@ export const siteConfig = {
     { label: "YouTube", href: "https://www.youtube.com" },
     { label: "RSS", href: "/rss.xml" },
   ],
-};
+} as const;
 
 /** Header navigation. Add or remove entries freely; the header renders them in order. */
 export const navigation = [
