@@ -1,6 +1,7 @@
 ---
 import { navigation, siteConfig } from "@/config/site";
 import { formatDate, postHref, readingLabel, visiblePosts, type Post } from "@/lib/posts";
+import { getLocale, getSwitcherData, t } from "i18n:astro";
 
 interface Props {
   posts: Post[];
@@ -20,6 +21,14 @@ const searchFallback = posts.slice(0, 12).map((post) => ({
 }));
 const isCurrentPath = (href: string) =>
   currentPath === href || (href !== "/" && currentPath.startsWith(href));
+
+// Build translated navigation
+const translatedNav = navigation.map((item) => ({
+  label: t(`header.nav.${item.key}`),
+  href: item.href,
+}));
+const locale = getLocale();
+const data = getSwitcherData();
 ---
 
 <header class="site-header outer">
@@ -27,9 +36,9 @@ const isCurrentPath = (href: string) =>
     <a href="/" class="wordmark">{siteConfig.name}</a>
 
     <div class="flex items-center gap-5">
-      <nav class="hidden items-center gap-6 md:flex" aria-label="Primary navigation">
+      <nav class="hidden items-center gap-6 md:flex" aria-label={t("header.nav.primaryLabel")}>
         {
-          navigation.map((item) => (
+          translatedNav.map((item) => (
             <a
               href={item.href}
               class="nav-link"
@@ -45,14 +54,15 @@ const isCurrentPath = (href: string) =>
         <a
           href="/search/"
           class="icon-btn"
-          aria-label="Search this site"
+          aria-label={t("header.search.toggleLabel")}
           aria-haspopup="dialog"
           aria-controls="site-search-dialog"
           data-search-toggle
         >
           <svg aria-hidden="true" class="h-[1.05rem] w-[1.05rem]" viewBox="0 0 24 24" fill="none">
-            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.75" />
-            <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.75"></circle>
+            <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+            ></path>
           </svg>
         </a>
 
@@ -62,15 +72,23 @@ const isCurrentPath = (href: string) =>
           role="switch"
           aria-checked="false"
           data-theme-toggle
-          aria-label="Switch to dark mode"
+          aria-label={t("header.theme.switchToDark")}
         >
           <span class="theme-switch__knob" aria-hidden="true">
             <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none">
-              <path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M5 5 3.5 3.5M20.5 20.5 19 19M19 5l1.5-1.5M3.5 20.5 5 19" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" />
-              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+              <path
+                d="M12 4V2M12 22v-2M4 12H2M22 12h-2M5 5 3.5 3.5M20.5 20.5 19 19M19 5l1.5-1.5M3.5 20.5 5 19"
+                stroke="currentColor"
+                stroke-width="2.25"
+                stroke-linecap="round"></path>
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25"></circle>
             </svg>
             <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none">
-              <path d="M20 14.2A7.4 7.4 0 0 1 9.8 4a8.6 8.6 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round" />
+              <path
+                d="M20 14.2A7.4 7.4 0 0 1 9.8 4a8.6 8.6 0 1 0 10.2 10.2Z"
+                stroke="currentColor"
+                stroke-width="2.25"
+                stroke-linejoin="round"></path>
             </svg>
           </span>
         </button>
@@ -83,10 +101,24 @@ const isCurrentPath = (href: string) =>
           data-mobile-menu-toggle
         >
           <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+            <path
+              d="M4 7h16M4 12h16M4 17h16"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"></path>
           </svg>
-          <span class="sr-only">Open navigation menu</span>
+          <span class="sr-only">{t("header.nav.openMenu")}</span>
         </button>
+
+        <select onchange="location = this.value;" class="ml-3">
+          {
+            data.map((e) => (
+              <option value={e.href} selected={e.locale === locale}>
+                {e.locale}
+              </option>
+            ))
+          }
+        </select>
       </div>
     </div>
   </div>
@@ -100,27 +132,39 @@ const isCurrentPath = (href: string) =>
   data-search-dialog
 >
   <div class="search-panel" data-search-panel data-empty>
-    <form action="/search/" method="get" role="search" aria-label="Site search">
+    <form action="/search/" method="get" role="search" aria-label={t("header.search.formLabel")}>
       <div class="search-field">
         <svg aria-hidden="true" class="search-field-icon" viewBox="0 0 24 24" fill="none">
-          <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.75" />
-          <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+          <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.75"></circle>
+          <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+          ></path>
         </svg>
-        <h2 id="site-search-title" class="sr-only">Search {siteConfig.name}</h2>
-        <label class="sr-only" for="site-search-input">Search posts</label>
+        <h2 id="site-search-title" class="sr-only">
+          {t("header.search.title", { siteName: siteConfig.name })}
+        </h2>
+        <label class="sr-only" for="site-search-input">{t("header.search.label")}</label>
         <input
           id="site-search-input"
           name="q"
           type="search"
           class="search-input"
-          placeholder="Search posts, categories, authors…"
+          placeholder={t("header.search.placeholder")}
           autocomplete="off"
           enterkeyhint="search"
           data-search-input
         />
-        <button type="button" class="icon-btn shrink-0" aria-label="Close search" data-search-close>
+        <button
+          type="button"
+          class="icon-btn shrink-0"
+          aria-label={t("header.search.closeLabel")}
+          data-search-close
+        >
           <svg aria-hidden="true" class="h-[1.1rem] w-[1.1rem]" viewBox="0 0 24 24" fill="none">
-            <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+            <path
+              d="m6 6 12 12M18 6 6 18"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"></path>
           </svg>
         </button>
       </div>
@@ -128,16 +172,22 @@ const isCurrentPath = (href: string) =>
       <div class="search-body">
         <div class="search-body-head">
           <p class="eyebrow" data-search-heading></p>
-          <p id="site-search-summary" class="text-xs text-muted-foreground" data-search-summary aria-live="polite"></p>
+          <p
+            id="site-search-summary"
+            class="text-xs text-muted-foreground"
+            data-search-summary
+            aria-live="polite"
+          >
+          </p>
         </div>
         <div class="search-results" data-search-results></div>
       </div>
 
       <div class="search-foot" aria-hidden="true">
-        <span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
-        <span><kbd>↵</kbd> Open</span>
-        <span><kbd data-search-shortcut>Ctrl K</kbd> Toggle</span>
-        <span class="ml-auto hidden sm:inline">Enter searches everything</span>
+        <span><kbd>↑</kbd><kbd>↓</kbd> {t("header.search.hintNavigate")}</span>
+        <span><kbd>↵</kbd> {t("header.search.hintOpen")}</span>
+        <span><kbd data-search-shortcut>Ctrl K</kbd> {t("header.search.hintToggle")}</span>
+        <span class="ml-auto hidden sm:inline">{t("header.search.hintSubmit")}</span>
       </div>
     </form>
   </div>
@@ -148,22 +198,31 @@ const isCurrentPath = (href: string) =>
   class="mobile-menu-panel md:hidden"
   role="dialog"
   aria-modal="true"
-  aria-label="Navigation menu"
+  aria-label={t("header.nav.menuDialogLabel")}
   hidden
 >
   <div class="flex items-center justify-between gap-6 border-b border-border px-6 py-4">
     <a href="/" class="wordmark">{siteConfig.name}</a>
-    <button type="button" class="icon-btn" data-mobile-menu-close aria-label="Close navigation menu">
+    <button
+      type="button"
+      class="icon-btn"
+      data-mobile-menu-close
+      aria-label={t("header.nav.closeMenu")}
+    >
       <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-        <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+        <path
+          d="m6 6 12 12M18 6 6 18"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"></path>
       </svg>
     </button>
   </div>
 
-  <nav class="px-6 py-4" aria-label="Mobile navigation">
+  <nav class="px-6 py-4" aria-label={t("header.nav.mobileLabel")}>
     <ul>
       {
-        navigation.map((item) => (
+        translatedNav.map((item) => (
           <li>
             <a
               href={item.href}
@@ -179,9 +238,16 @@ const isCurrentPath = (href: string) =>
   </nav>
 </div>
 
-<script is:inline type="application/json" id="site-search-fallback" set:html={JSON.stringify(searchFallback)} />
+<script
+  is:inline
+  type="application/json"
+  id="site-search-fallback"
+  set:html={JSON.stringify(searchFallback)}
+/>
 
 <script is:inline>
+  import { t } from "i18n:astro";
+
   (() => {
     const dialog = document.querySelector("[data-search-dialog]");
     const toggle = document.querySelector("[data-search-toggle]");
@@ -192,7 +258,9 @@ const isCurrentPath = (href: string) =>
     const heading = dialog?.querySelector("[data-search-heading]");
     const summary = dialog?.querySelector("[data-search-summary]");
     const panel = dialog?.querySelector("[data-search-panel]");
-    const fallback = JSON.parse(document.getElementById("site-search-fallback")?.textContent || "[]");
+    const fallback = JSON.parse(
+      document.getElementById("site-search-fallback")?.textContent || "[]",
+    );
     let index = [];
     let indexPromise;
 
@@ -223,13 +291,17 @@ const isCurrentPath = (href: string) =>
     };
 
     const escapeHtml = (value) =>
-      String(value).replace(/[&<>"']/g, (character) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      })[character]);
+      String(value).replace(
+        /[&<>"']/g,
+        (character) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[character],
+      );
 
     /* Lower is better: an exact title prefix beats a title match, which beats a
        category match, which beats a hit in the excerpt or author name. */
@@ -282,12 +354,12 @@ const isCurrentPath = (href: string) =>
         .slice(0, 7)
         .map(({ item }) => item);
 
-      heading.textContent = "Results";
-      summary.textContent = `${matches.length} ${matches.length === 1 ? "result" : "results"} for “${raw}”.`;
+      heading.textContent = t("header.search.resultsHeading");
+      summary.textContent = t("header.search.resultCount", { count: matches.length, query: raw });
       results.innerHTML =
         matches.length > 0
           ? matches.map(resultMarkup).join("")
-          : `<p class="search-empty">No posts match that yet. Try a title, topic, or author.</p>`;
+          : `<p class="search-empty">${t("header.search.empty")}</p>`;
     };
 
     const open = () => {

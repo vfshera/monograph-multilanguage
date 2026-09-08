@@ -1,6 +1,7 @@
 ---
 import LocalIcon from "@/components/LocalIcon.astro";
 import { footerNavigation, siteConfig } from "@/config/site";
+import { t } from "i18n:astro";
 
 const socialIconByLabel = {
   Instagram: "instagram",
@@ -14,13 +15,19 @@ const socials = siteConfig.socials.map((item) => ({
   icon: socialIconByLabel[item.label as keyof typeof socialIconByLabel] ?? "link-45deg",
 }));
 const currentYear = new Date().getFullYear();
+
+// Build translated footer navigation
+const translatedFooterNav = footerNavigation.map((item) => ({
+  label: t(`footer.nav.${item.key}`),
+  href: item.href,
+}));
 ---
 
 <footer class="outer mt-[var(--space-section)] border-t border-border">
   <div class="inner grid gap-10 py-12 text-center md:grid-cols-3 md:items-center md:gap-8 md:text-left">
     <div>
       <a href="/" class="wordmark">{siteConfig.name}</a>
-      <p class="mt-2 text-xs text-muted-foreground">&copy; {currentYear}. All rights reserved.</p>
+      <p class="mt-2 text-xs text-muted-foreground">&copy; {currentYear}. {t("footer.rights")}</p>
     </div>
 
     <div class="flex flex-col items-center gap-5">
@@ -31,7 +38,7 @@ const currentYear = new Date().getFullYear();
               <a
                 href={item.href}
                 class="social-btn"
-                aria-label={item.label === "RSS" ? "RSS feed" : `${siteConfig.name} on ${item.label}`}
+                aria-label={item.label === "RSS" ? t("footer.socialRssLabel") : t("footer.socialOnLabel", { siteName: siteConfig.name, label: item.label })}
                 rel={item.href.startsWith("http") ? "noreferrer" : undefined}
               >
                 <LocalIcon name={item.icon} className="h-[0.95rem] w-[0.95rem]" />
@@ -41,10 +48,10 @@ const currentYear = new Date().getFullYear();
         }
       </ul>
 
-      <nav aria-label="Footer navigation">
+      <nav aria-label={t("footer.nav.label")}>
         <ul class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
           {
-            footerNavigation.map((item, index) => (
+            translatedFooterNav.map((item, index) => (
               <li class="flex items-center gap-4">
                 {index > 0 && <span class="footer-dot" aria-hidden="true" />}
                 <a href={item.href} class="nav-link">{item.label}</a>
@@ -56,7 +63,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <p class="text-xs text-muted-foreground md:text-right">
-      Built with <a href="https://astro.build/" rel="noreferrer" class="link-quiet underline underline-offset-2">Astro</a>
+      {t("footer.builtWithPrefix")} <a href="https://astro.build/" rel="noreferrer" class="link-quiet underline underline-offset-2">Astro</a>
     </p>
   </div>
 </footer>

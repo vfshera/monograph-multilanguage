@@ -45,14 +45,14 @@ export const siteConfig = {
 
 /** Header navigation. Add or remove entries freely; the header renders them in order. */
 export const navigation = [
-  { label: "Archive", href: "/posts/" },
-  { label: "Categories", href: "/categories/" },
-  { label: "About", href: "/about/" },
-];
+  { key: "archive", href: "/posts/" },
+  { key: "categories", href: "/categories/" },
+  { key: "about", href: "/about/" },
+] as const;
 
 /** Secondary navigation rendered in the footer. */
 export const footerNavigation = [
-  { label: "Contact", href: "/contact/" },
-  { label: "Privacy", href: "/privacy/" },
-  { label: "RSS", href: "/rss.xml" },
-];
+  { key: "contact", href: "/contact/" },
+  { key: "privacy", href: "/privacy/" },
+  { key: "rss", href: "/rss.xml" },
+] as const;
