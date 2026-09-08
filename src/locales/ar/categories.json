@@ -1,0 +1,16 @@
+{
+  "eyebrow": "الفهرس",
+  "title": "التصنيفات",
+  "categoryEyebrow": "تصنيف",
+  "allCategories": "جميع التصنيفات",
+  "postCount_one": "منشور {{count}}",
+  "postCount_other": "{{count}} منشور",
+  "postCount_two": "منشوران",
+  "postCount_few": "{{count}} منشورات",
+  "postCount_many": "{{count}} منشوراً",
+  "across_one": " عبر {{count}} تصنيف.",
+  "across_other": " عبر {{count}} تصنيف.",
+  "across_two": " عبر تصنيفين.",
+  "across_few": " عبر {{count}} تصنيفات.",
+  "across_many": " عبر {{count}} تصنيفاً."
+}

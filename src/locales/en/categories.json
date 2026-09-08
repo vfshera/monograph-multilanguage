@@ -1,0 +1,10 @@
+{
+  "eyebrow": "Index",
+  "title": "Categories",
+  "categoryEyebrow": "Category",
+  "allCategories": "All categories",
+  "postCount_one": "{{count}} post",
+  "postCount_other": "{{count}} posts",
+  "across_one": " across {{count}} category.",
+  "across_other": " across {{count}} categories."
+}
