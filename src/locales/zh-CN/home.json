@@ -1,0 +1,12 @@
+{
+  "latestPostLabel": "最新文章",
+  "latest": "最新",
+  "morePosts": "更多文章",
+  "comingSoon": "更多文章即将推出。",
+  "browseArchive": "浏览归档",
+  "about": "关于",
+  "featured": "精选",
+  "categories": "分类",
+  "postCount_one": "{{count}} 篇文章",
+  "postCount_other": "{{count}} 篇文章"
+}

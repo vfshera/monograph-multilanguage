@@ -1,0 +1,12 @@
+{
+  "latestPostLabel": "Latest post",
+  "latest": "Latest",
+  "morePosts": "More posts",
+  "comingSoon": "More posts are coming soon.",
+  "browseArchive": "Browse the archive",
+  "about": "About",
+  "featured": "Featured",
+  "categories": "Categories",
+  "postCount_one": "{{count}} post",
+  "postCount_other": "{{count}} posts"
+}
