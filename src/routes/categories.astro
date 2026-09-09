@@ -10,21 +10,20 @@ import { getEntries } from "astro:content";
 
 const allPosts = visiblePosts(await getCollection("posts"));
 
-const categoryPostCount: Record<string, number> = {};
+const categoryPostCount = allPosts.reduce(
+  (acc, post) => {
+    if (!acc[post.id]) {
+      acc[post.id] = 1;
+    } else {
+      acc[post.id]++;
+    }
+    return acc;
+  },
+  {} as Record<string, number>,
+);
 
 const categories = await getEntries(
-  [
-    ...new Set(
-      allPosts.map((p) => {
-        if (!categoryPostCount[p.data.category.id]) {
-          categoryPostCount[p.data.category.id] = 1;
-        } else {
-          categoryPostCount[p.data.category.id]++;
-        }
-        return p.data.category.id;
-      }),
-    ),
-  ].map((id) => ({ id, collection: "categories" })),
+  Object.keys(categoryPostCount).map((id) => ({ id, collection: "categories" })),
 );
 ---
 
