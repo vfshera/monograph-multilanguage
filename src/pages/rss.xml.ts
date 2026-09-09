@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
-import { siteConfig } from "@/config/site";
-import { postHref, visiblePosts } from "@/lib/posts";
+import { siteConfig } from "~/config/site";
+import { postHref, visiblePosts } from "~/lib/posts";
 
 const escapeXml = (value: string) =>
   value

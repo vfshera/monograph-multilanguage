@@ -1,7 +1,7 @@
 import { defineCollection, reference } from "astro:content";
 import { glob } from "astro/loaders";
-import { z } from "astro/zod"; 
-import { localeEnum } from "@/config/site";
+import { z } from "astro/zod";
+import { localeEnum } from "~/config/site";
 
 const categories = defineCollection({
   loader: glob({ pattern: "**/[^_]*.yml", base: "./src/content/categories" }),

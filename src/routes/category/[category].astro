@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import PostCard from "@/components/PostCard.astro";
-import Layout from "@/layouts/Layout.astro";
-import { siteConfig } from "@/config/site";
+import PostCard from "~/components/PostCard.astro";
+import Layout from "~/layouts/Layout.astro";
+import { siteConfig } from "~/config/site";
 
 import { getLocalePlaceholder, t } from "i18n:astro";
-import { visiblePosts } from "@/lib/posts";
+import { visiblePosts } from "~/lib/posts";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {

@@ -4,7 +4,7 @@
   "exclude": ["dist", "Journal-main"],
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "~/*": ["./src/*"]
     }
   }
 }

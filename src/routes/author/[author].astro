@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import PostCard from "@/components/PostCard.astro";
-import Layout from "@/layouts/Layout.astro";
-import { siteConfig } from "@/config/site";
-import { authorSlug, getAllAuthors, visiblePosts, type Post } from "@/lib/posts";
+import PostCard from "~/components/PostCard.astro";
+import Layout from "~/layouts/Layout.astro";
+import { siteConfig } from "~/config/site";
+import { authorSlug, getAllAuthors, visiblePosts, type Post } from "~/lib/posts";
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));

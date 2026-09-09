@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import { siteConfig } from "@/config/site";
-import { categoryHref, visiblePosts } from "@/lib/posts";
+import { siteConfig } from "~/config/site";
+import { categoryHref, visiblePosts } from "~/lib/posts";
 import { t } from "i18n:astro";
 import { getEntries } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
+import Layout from "~/layouts/Layout.astro";
 
 const allPosts = visiblePosts(await getCollection("posts"));
 

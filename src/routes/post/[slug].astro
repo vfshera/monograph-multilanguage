@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, getEntry, render } from "astro:content";
-import LocalIcon from "@/components/LocalIcon.astro";
-import PostCard from "@/components/PostCard.astro";
-import Layout from "@/layouts/Layout.astro";
-import Callout from "@/components/mdx/Callout.astro";
-import CodeGroup from "@/components/mdx/CodeGroup.astro";
-import CodeGroupItem from "@/components/mdx/CodeGroupItem.astro";
-import { siteConfig } from "@/config/site";
+import LocalIcon from "~/components/LocalIcon.astro";
+import PostCard from "~/components/PostCard.astro";
+import Layout from "~/layouts/Layout.astro";
+import Callout from "~/components/mdx/Callout.astro";
+import CodeGroup from "~/components/mdx/CodeGroup.astro";
+import CodeGroupItem from "~/components/mdx/CodeGroupItem.astro";
+import { siteConfig } from "~/config/site";
 import {
   authorSlug,
   categoryHref,
@@ -19,7 +19,7 @@ import {
   readingLabel,
   visiblePosts,
   type Post,
-} from "@/lib/posts";
+} from "~/lib/posts";
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));

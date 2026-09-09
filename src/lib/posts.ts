@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
-import { categories, categorySlug, type Category } from "@/config/categories";
-import { siteConfig } from "@/config/site";
+import { categories, categorySlug, type Category } from "~/config/categories";
+import { siteConfig } from "~/config/site";
 
 export type Post = CollectionEntry<"posts">;
 export { categories, categorySlug, type Category };

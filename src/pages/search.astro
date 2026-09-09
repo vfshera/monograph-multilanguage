@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import { siteConfig } from "@/config/site";
-import { formatDate, postHref, readingLabel, visiblePosts } from "@/lib/posts";
+import Layout from "~/layouts/Layout.astro";
+import { siteConfig } from "~/config/site";
+import { formatDate, postHref, readingLabel, visiblePosts } from "~/lib/posts";
 
 const allPosts = visiblePosts(await getCollection("posts"));
 const searchItems = allPosts.map((post) => ({

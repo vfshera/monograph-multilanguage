@@ -1,4 +1,4 @@
-import type { StructuredData } from "@/types";
+import type { StructuredData } from "~/types";
 import type { Graph, Organization, Thing, WebSite } from "schema-dts";
 
 export function hasType(entity: Thing, type: Exclude<Thing, string>["@type"]): boolean {

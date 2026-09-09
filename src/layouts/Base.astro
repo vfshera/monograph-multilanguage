@@ -1,12 +1,12 @@
 ---
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "~/config/site";
 import "@/styles/global.css";
 import I18nHead from "@astrolicious/i18n/components/I18nHead.astro";
 import I18nClient from "@astrolicious/i18n/components/I18nClient.astro";
 import { getHtmlAttrs } from "i18n:astro";
 import { SEO, type Props as AstroSEOProps } from "astro-seo";
-import { createStructuredData } from "@/lib/structured-data";
-import type { StructuredData } from "@/types";
+import { createStructuredData } from "~/lib/structured-data";
+import type { StructuredData } from "~/types";
 
 interface Props extends AstroSEOProps {
   class?: astroHTML.JSX.HTMLAttributes["class"];

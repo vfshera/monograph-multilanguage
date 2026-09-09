@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import { formatDate, postHref, readingLabel, visiblePosts } from "@/lib/posts";
+import { formatDate, postHref, readingLabel, visiblePosts } from "~/lib/posts";
 
 /**
  * Static search index consumed by the header command palette. It holds post

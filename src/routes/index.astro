@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import NewsletterSignup from "@/components/NewsletterSignup.astro";
-import PostCard from "@/components/PostCard.astro";
-import Layout from "@/layouts/Layout.astro";
-import { siteConfig } from "@/config/site";
-import { categoryHref, getCategoryList, getFeatured, visiblePosts } from "@/lib/posts";
+import NewsletterSignup from "~/components/NewsletterSignup.astro";
+import PostCard from "~/components/PostCard.astro";
+import Layout from "~/layouts/Layout.astro";
+import { siteConfig } from "~/config/site";
+import { categoryHref, getCategoryList, getFeatured, visiblePosts } from "~/lib/posts";
 import { t } from "i18n:astro";
 
 const allPosts = visiblePosts(await getCollection("posts"));
