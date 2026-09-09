@@ -8,7 +8,18 @@ const allPosts = visiblePosts(await getCollection("posts"));
 const authors = getAllAuthors(allPosts);
 ---
 
-<Layout title="Authors" description={`People who write for ${siteConfig.name}.`}>
+<Layout
+  title="Authors"
+  description={`People who write for ${siteConfig.name}.`}
+  structuredData={[
+    {
+      "@type": "CollectionPage",
+      name: "Authors",
+      description: `People who write for ${siteConfig.name}.`,
+      url: new URL(Astro.url.pathname, Astro.site!).toString(),
+    },
+  ]}
+>
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">

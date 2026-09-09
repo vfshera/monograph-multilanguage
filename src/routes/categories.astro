@@ -28,6 +28,14 @@ const categories = await getEntries(
 <Layout
   title={t("categories:title")}
   description={`Every category on ${siteConfig.name}, with post counts.`}
+  structuredData={[
+    {
+      "@type": "CollectionPage",
+      name: t("categories:title"),
+      description: `Every category on ${siteConfig.name}, with post counts.`,
+      url: new URL(Astro.url.pathname, Astro.site!).toString(),
+    },
+  ]}
 >
   <div id="content" class="outer">
     <div class="canvas">

@@ -13,7 +13,7 @@ export const authorSlug = (author: string) =>
     .trim()
     .replace(/\s+/g, "-");
 
-export const categoryHref = (category: string) => `/category/${categorySlug(category)}/`;
+export const categoryHref = (slug: string) => `/category/${slug}/`;
 
 export const postSlug = (post: Post) => post.id.replace(/\/index$/, "");
 

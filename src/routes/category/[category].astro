@@ -2,40 +2,73 @@
 import { getCollection } from "astro:content";
 import PostCard from "@/components/PostCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { categoryDescriptions } from "@/config/categories";
 import { siteConfig } from "@/config/site";
-import {
-  categories,
-  categorySlug,
-  getPostsByCategory,
-  visiblePosts,
-  type Category,
-  type Post,
-} from "@/lib/posts";
-import { t } from "i18n:astro";
+
+import { getLocalePlaceholder, t } from "i18n:astro";
+import { visiblePosts } from "@/lib/posts";
+import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const allPosts = visiblePosts(await getCollection("posts"));
+  const locale = getLocalePlaceholder();
 
-  return categories
-    .filter((category) => getPostsByCategory(allPosts, category).length > 0)
-    .map((category) => ({
-      params: { category: categorySlug(category) },
-      props: { category, allPosts },
+  const categories = await getCollection("categories", ({ id }) => id.startsWith(locale));
+
+  return (
+    await Promise.all(
+      categories.map(async (category) => {
+        return {
+          category,
+          posts: visiblePosts(
+            await getCollection("posts", (p) => p.data.category.id === `${locale}/${category.id}`),
+          ),
+        };
+      }),
+    )
+  )
+    .filter((i) => i.posts.length)
+
+    .map(({ category, posts }) => ({
+      params: { category: category.id.split("/").pop() },
+      props: { category, posts },
     }));
 }
 
 interface Props {
-  category: Category;
-  allPosts: Post[];
+  category: CollectionEntry<"categories">;
+  posts: CollectionEntry<"posts">[];
 }
 
-const { category, allPosts } = Astro.props;
-const posts = getPostsByCategory(allPosts, category);
-const description = categoryDescriptions[category];
+const { category, posts } = Astro.props;
+
+const title = category.data.name;
+const description = category.data.description;
 ---
 
-<Layout title={category} description={`${description} ${siteConfig.name} posts in ${category}.`}>
+<Layout
+  title={title}
+  description={`${description} ${siteConfig.name} posts in ${category}.`}
+  structuredData={[
+    {
+      "@type": "CollectionPage",
+      name: title,
+      description,
+      url: new URL(Astro.url.pathname, Astro.site!).toString(),
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: Astro.site!.toString() },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Categories",
+          item: new URL("/categories/", Astro.site!).toString(),
+        },
+        { "@type": "ListItem", position: 3, name: title },
+      ],
+    },
+  ]}
+>
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">

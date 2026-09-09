@@ -11,6 +11,14 @@ const authors = getAllAuthors(allPosts);
 <Layout
   title="About"
   description={`About ${siteConfig.name} — what it publishes and who writes it.`}
+  structuredData={[
+    {
+      "@type": "AboutPage",
+      name: "About",
+      description: `About ${siteConfig.name} — what it publishes and who writes it.`,
+      url: new URL(Astro.url.pathname, Astro.site!).toString(),
+    },
+  ]}
 >
   <div id="content" class="outer">
     <div class="canvas">

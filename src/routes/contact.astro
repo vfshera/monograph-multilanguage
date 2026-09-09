@@ -8,9 +8,15 @@ const isEnabled = contact.enabled;
 /* No endpoint configured: keep the form usable and confirm the submit locally
    rather than posting the page to nowhere. */
 const isDemo = isEnabled && action.length === 0;
+
+ 
 ---
 
-<Layout title="Contact" description={`Get in touch with ${siteConfig.name}.`}>
+<Layout title="Contact" description={`Get in touch with ${siteConfig.name}.`} structuredData={[{
+  "@type": "ContactPage",
+  name: "Contact",
+  url: new URL(Astro.url.pathname, Astro.site).toString(),
+}]}>
    
   <div id="content" class="outer">
     <div class="canvas">

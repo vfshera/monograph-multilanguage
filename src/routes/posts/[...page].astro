@@ -27,6 +27,14 @@ const nextUrl = withTrailingSlash(page.url.next);
 <Layout
   title={title}
   description={description}
+  structuredData={[
+    {
+      "@type": "CollectionPage",
+      name: title,
+      description,
+      url: new URL(Astro.url.pathname, Astro.site).toString(),
+    },
+  ]}
   extend={{
     link: [
       { rel: "prev", href: prevUrl },

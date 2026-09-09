@@ -27,6 +27,18 @@ const posts = visiblePosts(allPosts).filter(
 <Layout
   title={author.name}
   description={`Posts by ${author.name}, ${author.role}, on ${siteConfig.name}.`}
+  structuredData={[
+    {
+      "@type": "ProfilePage",
+      name: author.name,
+      mainEntity: {
+        "@type": "Person",
+        name: author.name,
+        jobTitle: author.role,
+        url: new URL(Astro.url.pathname, Astro.site!).toString(),
+      },
+    },
+  ]}
 >
   <div id="content" class="outer">
     <div class="canvas">
