@@ -1,7 +1,7 @@
 ---
 title: "Cloud Cost Reviews Engineers Will Actually Attend"
 excerpt: "Cost reviews work better when they focus on engineering choices, not shame dashboards and surprise invoices."
-category: "Cloud"
+category: "en/cloud"
 date: 2026-07-02
 author:
   name: "Iris Novak"

@@ -1,7 +1,7 @@
 ---
 title: "Design Tokens That Survive Product Growth"
 excerpt: "Tokens work when they describe decisions, not when they become a colorful spreadsheet of every value the interface has ever used."
-category: "Design Systems"
+category: "en/design-systems"
 date: 2026-07-05
 author:
   name: "Leah Morgan"
