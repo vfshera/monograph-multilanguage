@@ -9,7 +9,7 @@ interface Props extends ComponentProps<typeof BaseLayout> {}
 const { class: className, "class:list": classList, ...props } = Astro.props;
 ---
 
-<BaseLayout {...props} class:list={[classList, className]}>
+<BaseLayout {...props} class:list={["grid grid-rows-[auto_1fr_auto]", classList, className]}>
   <slot name="head" slot="head" />
   <a class="skip-link" href="#content">Skip to content</a>
   <SiteHeader posts={[]} />

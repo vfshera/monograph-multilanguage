@@ -21,6 +21,15 @@
   font-display: swap;
 }
 
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
 /*
  * Bridges the palette below into Tailwind, which turns each entry into
  * utilities (`text-accent`, `border-border`, `bg-muted`, and so on). Add a
@@ -153,6 +162,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -306,13 +316,13 @@
     color: var(--muted-foreground);
   }
 
-  .meta > * {
+  .meta>* {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
   }
 
-  .meta > * + *::before {
+  .meta>*+*::before {
     width: 2px;
     height: 2px;
     content: "";
@@ -684,7 +694,7 @@
     word-break: break-word;
   }
 
-  .prose > :first-child {
+  .prose> :first-child {
     margin-top: 0;
   }
 
@@ -775,11 +785,11 @@
     color: inherit;
   }
 
-  .prose blockquote > :first-child {
+  .prose blockquote> :first-child {
     margin-top: 0;
   }
 
-  .prose blockquote > :last-child {
+  .prose blockquote> :last-child {
     margin-bottom: 0;
   }
 
