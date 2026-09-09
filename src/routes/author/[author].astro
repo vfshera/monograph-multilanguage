@@ -7,6 +7,7 @@ import { authorSlug, getAllAuthors, visiblePosts, type Post } from "~/lib/posts"
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));
+
   return getAllAuthors(allPosts).map((author) => ({
     params: { author: author.slug },
     props: { author, allPosts },

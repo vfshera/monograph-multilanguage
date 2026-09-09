@@ -15,6 +15,7 @@ const categoryPostCount = allPosts.reduce(
     } else {
       acc[post.id]++;
     }
+
     return acc;
   },
   {} as Record<string, number>,

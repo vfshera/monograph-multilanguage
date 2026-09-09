@@ -15,6 +15,7 @@ export async function GET() {
   const items = posts
     .map((post) => {
       const url = new URL(postHref(post), siteConfig.siteUrl).toString();
+
       return `<item>
   <title>${escapeXml(post.data.title)}</title>
   <link>${url}</link>

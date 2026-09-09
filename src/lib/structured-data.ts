@@ -14,6 +14,7 @@ export type CreateStructuredDataOptions = {
   url: URL;
   data: StructuredData;
 };
+
 export function createStructuredData({
   url,
   name,

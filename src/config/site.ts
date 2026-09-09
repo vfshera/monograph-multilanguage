@@ -57,11 +57,11 @@ export const footerNavigation = [
   { key: "rss", href: "/rss.xml" },
 ] as const;
 
- /**
-  *  Available locales for the site.
-  * 
-  *  Adjust to match what is available in i18n integration
-  */
+/**
+ *  Available locales for the site.
+ *
+ *  Adjust to match what is available in i18n integration
+ */
 export const locales = ["en", "ar", "zh-CN", "de"] as const;
 
-export const localeEnum = z.enum(locales)
+export const localeEnum = z.enum(locales);

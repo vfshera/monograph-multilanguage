@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "~/config/site";
-import "@/styles/global.css";
+import "~/styles/global.css";
 import I18nHead from "@astrolicious/i18n/components/I18nHead.astro";
 import I18nClient from "@astrolicious/i18n/components/I18nClient.astro";
 import { getHtmlAttrs } from "i18n:astro";
@@ -106,6 +106,7 @@ const structuredData = createStructuredData({
               localStorage.setItem(storageKey, theme);
             } catch {}
           }
+
           updateToggles(theme);
         };
 

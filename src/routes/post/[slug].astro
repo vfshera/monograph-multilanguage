@@ -23,6 +23,7 @@ import {
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));
+
   return allPosts.map((post) => ({
     params: { slug: postSlug(post) },
     props: { post, allPosts },
@@ -303,6 +304,7 @@ const category = await getEntry(data.category);
           button.textContent = "Failed";
           liveRegion.textContent = "Copy failed";
         }
+
         window.setTimeout(() => {
           button.textContent = "Copy";
         }, 1800);

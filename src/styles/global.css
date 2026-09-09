@@ -162,7 +162,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -316,13 +315,13 @@ body {
     color: var(--muted-foreground);
   }
 
-  .meta>* {
+  .meta > * {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
   }
 
-  .meta>*+*::before {
+  .meta > * + *::before {
     width: 2px;
     height: 2px;
     content: "";
@@ -694,7 +693,7 @@ body {
     word-break: break-word;
   }
 
-  .prose> :first-child {
+  .prose > :first-child {
     margin-top: 0;
   }
 
@@ -785,11 +784,11 @@ body {
     color: inherit;
   }
 
-  .prose blockquote> :first-child {
+  .prose blockquote > :first-child {
     margin-top: 0;
   }
 
-  .prose blockquote> :last-child {
+  .prose blockquote > :last-child {
     margin-bottom: 0;
   }
 

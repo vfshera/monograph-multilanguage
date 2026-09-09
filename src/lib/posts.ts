@@ -3,6 +3,7 @@ import { categories, categorySlug, type Category } from "~/config/categories";
 import { siteConfig } from "~/config/site";
 
 export type Post = CollectionEntry<"posts">;
+
 export { categories, categorySlug, type Category };
 
 export const authorSlug = (author: string) =>
@@ -30,6 +31,7 @@ export const visiblePosts = (posts: Post[]) =>
  */
 export const readingMinutes = (post: Post) => {
   const words = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+
   return Math.max(1, Math.round(words / 220));
 };
 
@@ -63,6 +65,7 @@ export const getRelated = (posts: Post[], current: Post, limit = 3) =>
       const sameCategory =
         Number(b.data.category === current.data.category) -
         Number(a.data.category === current.data.category);
+
       return sameCategory || byNewest(a, b);
     })
     .slice(0, limit);
@@ -89,6 +92,7 @@ export const getAllAuthors = (posts: Post[]) =>
           role: post.data.author.role,
           posts: [...(current?.posts ?? []), post],
         });
+
         return authors;
       }, new Map<string, { name: string; role: string; posts: Post[] }>())
       .entries(),

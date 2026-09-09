@@ -276,14 +276,17 @@ const data = getSwitcherData();
       indexPromise ??= fetch("/search-index.json")
         .then((response) => {
           if (!response.ok) throw new Error("Search index unavailable");
+
           return response.json();
         })
         .then((items) => {
           index = Array.isArray(items) && items.length > 0 ? items : fallback;
+
           return index;
         })
         .catch(() => {
           index = fallback;
+
           return index;
         });
 
@@ -314,6 +317,7 @@ const data = getSwitcherData();
       if (title.includes(query)) return 1;
       if (category.includes(query)) return 2;
       if (supporting.includes(query)) return 3;
+
       return Number.POSITIVE_INFINITY;
     };
 
@@ -337,6 +341,7 @@ const data = getSwitcherData();
         heading.textContent = "";
         summary.textContent = "";
         results.innerHTML = "";
+
         return;
       }
 
@@ -519,6 +524,7 @@ const data = getSwitcherData();
         if (event.key === "Escape") {
           setMenuOpen(false);
           menuButton.focus();
+
           return;
         }
 

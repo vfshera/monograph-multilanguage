@@ -8,6 +8,7 @@ import { visiblePosts, type Post } from "~/lib/posts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = visiblePosts(await getCollection("posts"));
+
   return paginate(posts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
