@@ -1,17 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-import SiteFooter from "@/components/SiteFooter.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { siteConfig } from "@/config/site";
-import { visiblePosts } from "@/lib/posts";
-
-const allPosts = visiblePosts(await getCollection("posts"));
 ---
 
-<BaseLayout title="Privacy" description={`Privacy policy for ${siteConfig.name}.`}>
-  <SiteHeader posts={allPosts} />
-  <main id="content" class="outer">
+<Layout title="Privacy" description={`Privacy policy for ${siteConfig.name}.`}>
+  <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
         <p class="eyebrow">Privacy</p>
@@ -38,19 +31,24 @@ const allPosts = visiblePosts(await getCollection("posts"));
         <h2>Your reading preference</h2>
         <p>
           The light or dark reading mode you pick is stored in your browser's local storage under
-          <code>monograph-theme</code>. It never leaves your device and you can clear it at any time.
+          <code>monograph-theme</code>. It never leaves your device and you can clear it at any
+          time.
         </p>
 
         <h2>Contact</h2>
         {
           siteConfig.email ? (
-            <p>For privacy requests, email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+            <p>
+              For privacy requests, email{" "}
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+            </p>
           ) : (
-            <p>Add a privacy contact address in <code>src/config/site.ts</code> before publishing.</p>
+            <p>
+              Add a privacy contact address in <code>src/config/site.ts</code> before publishing.
+            </p>
           )
         }
       </div>
     </div>
-  </main>
-  <SiteFooter />
-</BaseLayout>
+  </div>
+</Layout>

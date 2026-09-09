@@ -1,9 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import PostCard from "@/components/PostCard.astro";
-import SiteFooter from "@/components/SiteFooter.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { categoryDescriptions } from "@/config/categories";
 import { siteConfig } from "@/config/site";
 import {
@@ -37,9 +35,8 @@ const posts = getPostsByCategory(allPosts, category);
 const description = categoryDescriptions[category];
 ---
 
-<BaseLayout title={category} description={`${description} ${siteConfig.name} posts in ${category}.`}>
-  <SiteHeader posts={allPosts} />
-  <main id="content" class="outer">
+<Layout title={category} description={`${description} ${siteConfig.name} posts in ${category}.`}>
+  <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
         <p class="eyebrow">{t("categories:categoryEyebrow")}</p>
@@ -54,8 +51,9 @@ const description = categoryDescriptions[category];
         {posts.map((post) => <PostCard post={post} />)}
       </div>
 
-      <a href="/categories/" class="btn btn-outline btn-block mt-16">{t("categories:allCategories")}</a>
+      <a href="/categories/" class="btn btn-outline btn-block mt-16"
+        >{t("categories:allCategories")}</a
+      >
     </div>
-  </main>
-  <SiteFooter />
-</BaseLayout>
+  </div>
+</Layout>

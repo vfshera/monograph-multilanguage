@@ -2,9 +2,7 @@
 import { getCollection } from "astro:content";
 import NewsletterSignup from "@/components/NewsletterSignup.astro";
 import PostCard from "@/components/PostCard.astro";
-import SiteFooter from "@/components/SiteFooter.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { siteConfig } from "@/config/site";
 import { categoryHref, getCategoryList, getFeatured, visiblePosts } from "@/lib/posts";
 import { t } from "i18n:astro";
@@ -17,9 +15,8 @@ const categoryList = getCategoryList(allPosts);
 const hasMore = rest.length > feed.length;
 ---
 
-<BaseLayout>
-  <SiteHeader posts={allPosts} />
-  <main id="content" class="outer">
+<Layout>
+  <div id="content" class="outer">
     <div class="inner">
       <h1 class="sr-only">{siteConfig.name} — {siteConfig.tagline}</h1>
 
@@ -115,6 +112,5 @@ const hasMore = rest.length > feed.length;
         </aside>
       </div>
     </div>
-  </main>
-  <SiteFooter />
-</BaseLayout>
+  </div>
+</Layout>

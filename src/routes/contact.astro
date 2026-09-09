@@ -1,12 +1,7 @@
 ---
-import { getCollection } from "astro:content";
-import SiteFooter from "@/components/SiteFooter.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { siteConfig } from "@/config/site";
-import { visiblePosts } from "@/lib/posts";
 
-const allPosts = visiblePosts(await getCollection("posts"));
 const contact = siteConfig.contact;
 const action = contact.action.trim();
 const isEnabled = contact.enabled;
@@ -15,9 +10,9 @@ const isEnabled = contact.enabled;
 const isDemo = isEnabled && action.length === 0;
 ---
 
-<BaseLayout title="Contact" description={`Get in touch with ${siteConfig.name}.`}>
-  <SiteHeader posts={allPosts} />
-  <main id="content" class="outer">
+<Layout title="Contact" description={`Get in touch with ${siteConfig.name}.`}>
+   
+  <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
         <p class="eyebrow">Contact</p>
@@ -71,8 +66,7 @@ const isDemo = isEnabled && action.length === 0;
         }
       </form>
     </div>
-  </main>
-  <SiteFooter />
+  </div> 
 
   {
     isDemo && (
@@ -97,4 +91,4 @@ const isDemo = isEnabled && action.length === 0;
       display: none;
     }
   </style>
-</BaseLayout>
+</Layout>

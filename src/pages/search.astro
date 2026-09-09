@@ -1,8 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import SiteFooter from "@/components/SiteFooter.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { siteConfig } from "@/config/site";
 import { formatDate, postHref, readingLabel, visiblePosts } from "@/lib/posts";
 
@@ -18,13 +16,8 @@ const searchItems = allPosts.map((post) => ({
 }));
 ---
 
-<BaseLayout
-  title="Search"
-  description={`Search every post published on ${siteConfig.name}.`}
-  noindex
->
-  <SiteHeader posts={allPosts} />
-  <main id="content" class="outer">
+<Layout title="Search" description={`Search every post published on ${siteConfig.name}.`} noindex>
+  <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
         <p class="eyebrow">Search</p>
@@ -46,15 +39,20 @@ const searchItems = allPosts.map((post) => ({
           </div>
         </form>
 
-        <p class="search-page-summary mt-4 text-sm text-muted-foreground" data-search-page-summary></p>
+        <p class="search-page-summary mt-4 text-sm text-muted-foreground" data-search-page-summary>
+        </p>
       </header>
 
       <div class="feed" data-search-page-results></div>
     </div>
-  </main>
-  <SiteFooter />
+  </div>
 
-  <script is:inline type="application/json" id="search-page-data" set:html={JSON.stringify(searchItems)} />
+  <script
+    is:inline
+    type="application/json"
+    id="search-page-data"
+    set:html={JSON.stringify(searchItems)}
+  />
   <script is:inline>
     (() => {
       const input = document.querySelector("[data-search-page-input]");
@@ -65,13 +63,17 @@ const searchItems = allPosts.map((post) => ({
       if (!input || !results || !summary) return;
 
       const escapeHtml = (value) =>
-        String(value).replace(/[&<>"']/g, (character) => ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        })[character]);
+        String(value).replace(
+          /[&<>"']/g,
+          (character) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[character],
+        );
 
       const matches = (item, query) =>
         [item.title, item.excerpt, item.author, item.category]
@@ -134,4 +136,4 @@ const searchItems = allPosts.map((post) => ({
       text-wrap: pretty;
     }
   </style>
-</BaseLayout>
+</Layout>

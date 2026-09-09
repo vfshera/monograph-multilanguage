@@ -1,8 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import SiteFooter from "@/components/SiteFooter.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { siteConfig } from "@/config/site";
 import { authorSlug, getAllAuthors, visiblePosts } from "@/lib/posts";
 
@@ -10,12 +8,11 @@ const allPosts = visiblePosts(await getCollection("posts"));
 const authors = getAllAuthors(allPosts);
 ---
 
-<BaseLayout
+<Layout
   title="About"
   description={`About ${siteConfig.name} — what it publishes and who writes it.`}
 >
-  <SiteHeader posts={allPosts} />
-  <main id="content" class="outer">
+  <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
         <p class="eyebrow">About</p>
@@ -43,7 +40,8 @@ const authors = getAllAuthors(allPosts);
           {
             authors.map((author) => (
               <li>
-                <a href={`/author/${authorSlug(author.name)}/`}>{author.name}</a> — {author.role} ({author.posts.length} {author.posts.length === 1 ? "post" : "posts"})
+                <a href={`/author/${authorSlug(author.name)}/`}>{author.name}</a> — {author.role} (
+                {author.posts.length} {author.posts.length === 1 ? "post" : "posts"})
               </li>
             ))
           }
@@ -51,15 +49,19 @@ const authors = getAllAuthors(allPosts);
 
         <h2>Get in touch</h2>
         <p>
-          Questions, corrections, and requests are welcome through the <a href="/contact/">contact page</a>.
+          Questions, corrections, and requests are welcome through the <a href="/contact/"
+            >contact page</a
+          >.
         </p>
         {
           siteConfig.email && (
-            <p>You can also email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> directly.</p>
+            <p>
+              You can also email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>{" "}
+              directly.
+            </p>
           )
         }
       </div>
     </div>
-  </main>
-  <SiteFooter />
-</BaseLayout>
+  </div>
+</Layout>
