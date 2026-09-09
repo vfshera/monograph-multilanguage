@@ -1,7 +1,16 @@
-import { defineCollection } from "astro:content";
+import { defineCollection, reference } from "astro:content";
 import { glob } from "astro/loaders";
-import { z } from "astro/zod";
-import { categories } from "@/config/categories";
+import { z } from "astro/zod"; 
+import { localeEnum } from "@/config/site";
+
+const categories = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.yml", base: "./src/content/categories" }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    alternate: z.partialRecord(localeEnum, z.string()).default({}),
+  }),
+});
 
 const posts = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
@@ -10,7 +19,7 @@ const posts = defineCollection({
       title: z.string(),
       excerpt: z.string(),
       /** Must match one of the entries in src/config/categories.ts. */
-      category: z.enum(categories),
+      category: reference("categories"),
       date: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       author: z.object({
@@ -35,4 +44,4 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { posts };
+export const collections = { posts, categories };

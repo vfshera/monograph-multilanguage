@@ -1,3 +1,5 @@
+import { z } from "astro/zod";
+
 export const siteConfig = {
   /** Wordmark shown in the header and footer. Monograph uses text, never a logo image. */
   name: "Monograph",
@@ -54,3 +56,12 @@ export const footerNavigation = [
   { key: "privacy", href: "/privacy/" },
   { key: "rss", href: "/rss.xml" },
 ] as const;
+
+ /**
+  *  Available locales for the site.
+  * 
+  *  Adjust to match what is available in i18n integration
+  */
+export const locales = ["en", "ar", "zh-CN", "de"] as const;
+
+export const localeEnum = z.enum(locales)
