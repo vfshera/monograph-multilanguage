@@ -1,0 +1,14 @@
+{
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
+  "tailwindCSS.experimental.classRegex": [
+    ["[a-zA-Z0-9]*ClassName\\s*=\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`\\s]+)"],
+    ["[a-zA-Z0-9]*ClassName\\s*=\\s*\\{([^}]*)\\}", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"]
+  ]
+}
