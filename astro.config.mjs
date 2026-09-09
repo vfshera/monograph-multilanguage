@@ -27,6 +27,19 @@ export default defineConfig({
       defaultLocale: "en",
       locales: ["en", "ar", "zh-CN", "de"],
       client: { translations: true, data: true },
+      pages: {
+        "/category/[category]": {
+          ar: "/fia/[category]",
+          de: "/kategorie/[category]",
+          "zh-CN": "/fen-lei/[category]",
+        },
+
+        "/categories": {
+          ar: "/fiat",
+          de: "/kategorien",
+          "zh-CN": "/fen-lei",
+        },
+      },
     }),
   ],
   markdown: {

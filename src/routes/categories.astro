@@ -3,13 +3,29 @@ import { getCollection } from "astro:content";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { categoryDescriptions } from "@/config/categories";
 import { siteConfig } from "@/config/site";
-import { categoryHref, getCategoryList, visiblePosts } from "@/lib/posts";
+import { categoryHref, visiblePosts } from "@/lib/posts";
 import { t } from "i18n:astro";
+import { getEntries } from "astro:content";
 
 const allPosts = visiblePosts(await getCollection("posts"));
-const categoryList = getCategoryList(allPosts);
+
+const categoryPostCount: Record<string, number> = {};
+
+const categories = await getEntries(
+  [
+    ...new Set(
+      allPosts.map((p) => {
+        if (!categoryPostCount[p.data.category.id]) {
+          categoryPostCount[p.data.category.id] = 1;
+        } else {
+          categoryPostCount[p.data.category.id]++;
+        }
+        return p.data.category.id;
+      }),
+    ),
+  ].map((id) => ({ id, collection: "categories" })),
+);
 ---
 
 <BaseLayout
@@ -24,25 +40,25 @@ const categoryList = getCategoryList(allPosts);
         <h1 class="pagehead-title">{t("categories:title")}</h1>
         <p class="pagehead-description">
           {t("categories:postCount", { count: allPosts.length })}
-          {t("categories:across", { count: categoryList.length })}
+          {t("categories:across", { count: categories.length })}
         </p>
       </header>
 
       <ul class="grid gap-7">
         {
-          categoryList.map((category) => (
+          categories.map(({ data: category, id: slug }) => (
             <li class="border-b border-border pb-7 last:border-b-0">
-              <a href={categoryHref(category.name)} class="link-title">
+              <a href={categoryHref(slug)} class="link-title">
                 <span class="flex items-baseline justify-between gap-4">
                   <span class="link-title__text text-xl font-semibold tracking-tight">
                     {category.name}
                   </span>
                   <span class="pill shrink-0">
-                    {t("categories:postCount", { count: category.count })}
+                    {t("categories:postCount", { count: categoryPostCount[slug] ?? 0 })}
                   </span>
                 </span>
                 <span class="mt-2 block max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
-                  {categoryDescriptions[category.name]}
+                  {category.description}
                 </span>
               </a>
             </li>
