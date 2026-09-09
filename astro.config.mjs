@@ -16,11 +16,14 @@ const shikiConfig = /** @type {const} */ ({
   defaultColor: codeDefaultColor,
 });
 
+const siteUrl =
+  process.env.NODE_ENV === "production" ? siteConfig.siteUrl : "http://localhost:4321";
+
 export default defineConfig({
-  site: siteConfig.siteUrl,
+  site: siteUrl,
   integrations: [
     sitemap({
-      filter: (page) => page !== new URL("/search/", siteConfig.siteUrl).toString(),
+      filter: (page) => page !== new URL("/search/", siteUrl).toString(),
     }),
     mdx(),
     i18n({
