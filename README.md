@@ -1,3 +1,7 @@
+> Take note that all translations were done to demonstrate that i18n is working as expected.
+>
+> They are NOT to be considered correct translations because they are all AI generated.
+
 # Monograph - Minimal Astro Blog Theme
 
 [![Monograph theme preview](/preview.webp)](https://monograph.xocoweb.workers.dev/)
