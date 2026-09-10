@@ -3,12 +3,27 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { localeEnum } from "~/config/site";
 
+const alternateLangSchema = z.partialRecord(localeEnum, z.string()).default({});
+
+const customMetadataSchema = z.record(z.string(), z.string()).default({});
+
+const pages = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/pages" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    meta: z.partialRecord(z.enum(["title", "description"]), z.string()).default({}),
+    customMetadata: customMetadataSchema,
+    alternate: alternateLangSchema,
+  }),
+});
+
 const categories = defineCollection({
   loader: glob({ pattern: "**/[^_]*.yml", base: "./src/content/categories" }),
   schema: z.object({
     name: z.string(),
     description: z.string(),
-    alternate: z.partialRecord(localeEnum, z.string()).default({}),
+    alternate: alternateLangSchema,
   }),
 });
 
@@ -44,4 +59,4 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { posts, categories };
+export const collections = { posts, categories, pages };

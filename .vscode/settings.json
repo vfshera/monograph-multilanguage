@@ -10,5 +10,10 @@
   "tailwindCSS.experimental.classRegex": [
     ["[a-zA-Z0-9]*ClassName\\s*=\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`\\s]+)"],
     ["[a-zA-Z0-9]*ClassName\\s*=\\s*\\{([^}]*)\\}", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"]
-  ]
+  ],
+  "yaml.schemas": {
+    "./.astro/collections/pages.schema.json": ["/src/content/pages/**/*.mdx"],
+    "./.astro/collections/categories.schema.json": ["/src/content/categories/**/*.yml"],
+    "./.astro/collections/posts.schema.json": ["/src/content/posts/**/*.{md,mdx}"]
+  }
 }

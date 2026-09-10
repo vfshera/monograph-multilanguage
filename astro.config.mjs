@@ -42,6 +42,10 @@ export default defineConfig({
           de: "/kategorien",
           "zh-CN": "/fen-lei",
         },
+        "/privacy": {
+          de: "/datenschutz",
+          "zh-CN": "/yinsi-zhengce",
+        },
       },
     }),
   ],

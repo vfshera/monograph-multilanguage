@@ -1,0 +1,46 @@
+---
+title: 隐私政策
+description: 用于说明网站可能收集哪些信息以及如何使用这些信息的起始文本。请在正式上线前将其
+  替换为您自己的隐私政策。
+
+meta:
+  title: 隐私
+  description: Monograph 隐私政策
+
+customMetadata:
+  headerLabel: 隐私
+---
+
+import { siteConfig } from "~/config/site";
+
+## 收集的信息
+
+本网站采用静态生成，不会自行设置 Cookie。如果新闻通讯或联系表单连接到第三方服务商，
+该服务商将会收到您提交的信息。
+
+## 信息的使用方式
+
+您提交的信息仅用于回复您的咨询，或向您发送您主动请求的电子邮件。我们不会出售这些
+信息，也不会将其共享用于广告目的。
+
+## 您的阅读偏好
+
+您选择的浅色或深色阅读模式会存储在浏览器的本地存储中，键名为
+
+<code>monograph-theme</code>。该信息始终保留在您的设备上，您可以随时将其清除。
+
+## 联系方式
+
+{
+siteConfig.email ? (
+
+<p>
+如需提出隐私相关请求，请发送电子邮件至{" "}
+<a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>。
+</p>
+) : (
+<p>
+在发布网站之前，请在 <code>src/config/site.ts</code> 中添加隐私事务联系邮箱。
+</p>
+)
+}

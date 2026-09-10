@@ -1,0 +1,53 @@
+---
+title: Datenschutzerklärung
+description:
+  Ausgangstext, der beschreibt, welche Daten eine Website möglicherweise erhebt und wie sie
+  verwendet werden. Ersetzen Sie ihn vor der Veröffentlichung durch Ihre eigene
+  Datenschutzerklärung.
+
+meta:
+  title: Datenschutz
+  description: Datenschutzerklärung für Monograph
+
+customMetadata:
+  headerLabel: Datenschutz
+---
+
+import { siteConfig } from "~/config/site";
+
+## Welche Daten werden erhoben?
+
+Diese Website wird statisch generiert und setzt keine eigenen Cookies. Wenn der Newsletter
+oder das Kontaktformular mit einem Anbieter verbunden ist, erhält dieser Anbieter die von
+Ihnen übermittelten Angaben.
+
+## Wie werden die Daten verwendet?
+
+Die übermittelten Angaben werden ausschließlich verwendet, um Ihnen zu antworten oder die von
+Ihnen angeforderten E-Mails zu senden. Sie werden weder verkauft noch zu Werbezwecken
+weitergegeben.
+
+## Ihre Leseeinstellung
+
+Der von Ihnen gewählte helle oder dunkle Lesemodus wird im lokalen Speicher Ihres Browsers
+unter
+
+<code>monograph-theme</code> gespeichert. Diese Information verlässt Ihr Gerät niemals und kann
+jederzeit gelöscht werden.
+
+## Kontakt
+
+{
+siteConfig.email ? (
+
+<p>
+Für Datenschutzanfragen senden Sie eine E-Mail an{" "}
+<a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+</p>
+) : (
+<p>
+Fügen Sie vor der Veröffentlichung eine Kontaktadresse für Datenschutzanfragen in
+<code>src/config/site.ts</code> hinzu.
+</p>
+)
+}

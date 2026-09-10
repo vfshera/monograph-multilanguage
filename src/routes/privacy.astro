@@ -1,53 +1,51 @@
 ---
 import Layout from "~/layouts/Layout.astro";
-import { siteConfig } from "~/config/site";
+import { getEntry, render } from "astro:content";
+import { getLocale } from "i18n:astro";
+
+const locale = getLocale();
+
+/**
+ *  we are using lower case slugs to match Entry.id
+ */
+let slug = Astro.url.pathname.split("/").filter(Boolean).join("/").toLowerCase();
+
+if (!slug.startsWith(locale.toLowerCase())) {
+  slug = `${locale}/${slug}`.toLowerCase();
+}
+
+const entry = await getEntry("pages", slug);
+
+if (!entry) {
+  throw new Error(`Page not found: ${Astro.url.pathname}`);
+}
+
+const { Content } = await render(entry);
+const page = entry.data;
+
+const headerLabel = page.customMetadata.headerLabel;
 ---
 
-<Layout title="Privacy" description={`Privacy policy for ${siteConfig.name}.`}>
+<Layout
+  title={page.meta.title || page.title}
+  description={page.meta.description || page.description}
+  languageAlternates={Object.entries(page.alternate).map(([lang, altUrl]) => ({
+    hrefLang: lang,
+    href: new URL(altUrl, Astro.site!),
+  }))}
+>
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">Privacy</p>
-        <h1 class="pagehead-title">Privacy policy</h1>
+        {headerLabel && <p class="eyebrow">{headerLabel}</p>}
+        <h1 class="pagehead-title">{page.title}</h1>
         <p class="pagehead-description">
-          Starter copy describing what a publication may collect and how it is used. Replace it with
-          your own policy before going live.
+          {page.description}
         </p>
       </header>
 
       <div class="prose">
-        <h2>What is collected</h2>
-        <p>
-          This site is statically generated and sets no cookies of its own. If the newsletter or
-          contact form is connected to a provider, that provider receives the details you submit.
-        </p>
-
-        <h2>How it is used</h2>
-        <p>
-          Submitted details are used only to reply to you or to send the emails you asked for. They
-          are not sold or shared for advertising.
-        </p>
-
-        <h2>Your reading preference</h2>
-        <p>
-          The light or dark reading mode you pick is stored in your browser's local storage under
-          <code>monograph-theme</code>. It never leaves your device and you can clear it at any
-          time.
-        </p>
-
-        <h2>Contact</h2>
-        {
-          siteConfig.email ? (
-            <p>
-              For privacy requests, email{" "}
-              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
-            </p>
-          ) : (
-            <p>
-              Add a privacy contact address in <code>src/config/site.ts</code> before publishing.
-            </p>
-          )
-        }
+        <Content />
       </div>
     </div>
   </div>

@@ -1,0 +1,47 @@
+---
+title: Privacy policy
+description:
+  Starter copy describing what a publication may collect and how it is used. Replace it with
+  your own policy before going live.
+
+meta:
+  title: Privacy
+  description: Privacy policy for Monograph
+
+customMetadata:
+  headerLabel: Privacy
+---
+
+import { siteConfig } from "~/config/site";
+
+## What is collected
+
+This site is statically generated and sets no cookies of its own. If the newsletter or
+contact form is connected to a provider, that provider receives the details you submit.
+
+## How it is used
+
+Submitted details are used only to reply to you or to send the emails you asked for. They
+are not sold or shared for advertising.
+
+## Your reading preference
+
+The light or dark reading mode you pick is stored in your browser's local storage under
+
+<code>monograph-theme</code>. It never leaves your device and you can clear it at any time
+
+## Contact
+
+{
+siteConfig.email ? (
+
+<p>
+For privacy requests, email{" "}
+<a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+</p>
+) : (
+<p>
+Add a privacy contact address in <code>src/config/site.ts</code> before publishing.
+</p>
+)
+}
