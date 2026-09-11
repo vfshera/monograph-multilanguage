@@ -1,10 +1,8 @@
 import type { CollectionEntry } from "astro:content";
-import { categories, categorySlug, type Category } from "~/config/categories";
+import type { Locale } from "i18n:astro";
 import { siteConfig } from "~/config/site";
 
 export type Post = CollectionEntry<"posts">;
-
-export { categories, categorySlug, type Category };
 
 export const authorSlug = (author: string) =>
   author
@@ -45,15 +43,19 @@ export const getFeatured = (posts: Post[], limit = 5) =>
 export const getPostsByCategory = (posts: Post[], category: string) =>
   visiblePosts(posts).filter((post) => post.data.category.id === category);
 
-/** Categories in configured order, with post counts. Empty ones are dropped. */
-export const getCategoryList = (posts: Post[]) => {
+/** Categories with post counts. Empty ones are dropped. */
+export const getCategoryList = (
+  posts: Post[],
+  categoryEntries: CollectionEntry<"categories">[],
+  locale: Locale,
+) => {
   const visible = visiblePosts(posts);
 
-  return categories
-    .map((category) => ({
-      name: category,
-      slug: categorySlug(category),
-      count: visible.filter((post) => post.data.category.id === category).length,
+  return categoryEntries
+    .map((entry) => ({
+      name: entry.data[locale]!.name,
+      slug: entry.id,
+      count: visible.filter((post) => post.data.category.id === entry.id).length,
     }))
     .filter((entry) => entry.count > 0);
 };
@@ -106,3 +108,28 @@ export const formatDate = (date: Date, style: "short" | "long" = "short") =>
     day: "numeric",
     year: "numeric",
   }).format(date);
+
+export function createSharableLinks(articleUrl: URL, title: string) {
+  const encodedUrl = encodeURIComponent(articleUrl.href);
+  const encodedTitle = encodeURIComponent(title);
+  const shareLinks: { label: string; icon: "twitter-x" | "facebook" | "linkedin"; href: string }[] =
+    [
+      {
+        label: "X",
+        icon: "twitter-x",
+        href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      },
+      {
+        label: "Facebook",
+        icon: "facebook",
+        href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      },
+      {
+        label: "LinkedIn",
+        icon: "linkedin",
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+      },
+    ];
+
+  return shareLinks;
+}

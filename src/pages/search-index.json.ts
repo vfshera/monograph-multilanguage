@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content";
 import { formatDate, postHref, readingLabel, visiblePosts } from "~/lib/posts";
+import { getDefaultLocale, getLocale } from "i18n:astro";
 
 /**
  * Static search index consumed by the header command palette. It holds post
@@ -7,13 +8,21 @@ import { formatDate, postHref, readingLabel, visiblePosts } from "~/lib/posts";
  * the first search.
  */
 export async function GET() {
+  const locale = getLocale();
+  const defaultLocale = getDefaultLocale();
+
+  const allCategories = await getCollection("categories");
+  const categoryNameMap = new Map(
+    allCategories.map((c) => [c.id, (c.data[locale] ?? c.data[defaultLocale]).name]),
+  );
+
   const posts = visiblePosts(await getCollection("posts"));
   const index = posts.map((post) => ({
     title: post.data.title,
     excerpt: post.data.excerpt,
     href: postHref(post),
     author: post.data.author.name,
-    category: post.data.category,
+    category: categoryNameMap.get(post.data.category.id) ?? "",
     date: formatDate(post.data.date),
     reading: readingLabel(post),
   }));

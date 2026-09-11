@@ -1,7 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import { navigation, siteConfig } from "~/config/site";
 import { formatDate, postHref, readingLabel, visiblePosts, type Post } from "~/lib/posts";
-import { getLocale, getSwitcherData, t } from "i18n:astro";
+import { getDefaultLocale, getLocale, getSwitcherData, t } from "i18n:astro";
 
 interface Props {
   posts: Post[];
@@ -9,13 +10,21 @@ interface Props {
 
 const currentPath = Astro.url.pathname;
 const posts = visiblePosts(Astro.props.posts);
+const locale = getLocale();
+const defaultLocale = getDefaultLocale();
+
+const allCategories = await getCollection("categories");
+const categoryNameMap = new Map(
+  allCategories.map((c) => [c.id, (c.data[locale] ?? c.data[defaultLocale]).name]),
+);
+
 /* Inlined so the palette still returns results if /search-index.json fails. */
 const searchFallback = posts.slice(0, 12).map((post) => ({
   title: post.data.title,
   excerpt: post.data.excerpt,
   href: postHref(post),
   author: post.data.author.name,
-  category: post.data.category,
+  category: categoryNameMap.get(post.data.category.id) ?? "",
   date: formatDate(post.data.date),
   reading: readingLabel(post),
 }));
@@ -27,7 +36,6 @@ const translatedNav = navigation.map((item) => ({
   label: t(`header.nav.${item.key}`),
   href: item.href,
 }));
-const locale = getLocale();
 const data = getSwitcherData();
 ---
 

@@ -2,18 +2,20 @@
 import { getCollection } from "astro:content";
 import { siteConfig } from "~/config/site";
 import { categoryHref, visiblePosts } from "~/lib/posts";
-import { t } from "i18n:astro";
+import { t, getLocale, getDefaultLocale } from "i18n:astro";
 import { getEntries } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
 
+const locale = getLocale();
+const defaultLocale = getDefaultLocale();
 const allPosts = visiblePosts(await getCollection("posts"));
 
 const categoryPostCount = allPosts.reduce(
   (acc, post) => {
-    if (!acc[post.id]) {
-      acc[post.id] = 1;
+    if (!acc[post.data.category.id]) {
+      acc[post.data.category.id] = 1;
     } else {
-      acc[post.id]++;
+      acc[post.data.category.id]++;
     }
 
     return acc;
@@ -51,23 +53,27 @@ const categories = await getEntries(
 
       <ul class="grid gap-7">
         {
-          categories.map(({ data: category, id: slug }) => (
-            <li class="border-b border-border pb-7 last:border-b-0">
-              <a href={categoryHref(slug)} class="link-title">
-                <span class="flex items-baseline justify-between gap-4">
-                  <span class="link-title__text text-xl font-semibold tracking-tight">
-                    {category.name}
+          categories.map((c) => {
+            const category = c.data[locale] || c.data[defaultLocale];
+
+            return (
+              <li class="border-b border-border pb-7 last:border-b-0">
+                <a href={categoryHref(c.id)} class="link-title">
+                  <span class="flex items-baseline justify-between gap-4">
+                    <span class="link-title__text text-xl font-semibold tracking-tight">
+                      {category.name}
+                    </span>
+                    <span class="pill shrink-0">
+                      {t("categories:postCount", { count: categoryPostCount[c.id] ?? 0 })}
+                    </span>
                   </span>
-                  <span class="pill shrink-0">
-                    {t("categories:postCount", { count: categoryPostCount[slug] ?? 0 })}
+                  <span class="mt-2 block max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
+                    {category.description}
                   </span>
-                </span>
-                <span class="mt-2 block max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
-                  {category.description}
-                </span>
-              </a>
-            </li>
-          ))
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </div>

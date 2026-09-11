@@ -4,7 +4,7 @@ import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
 
-import { getLocalePlaceholder, t } from "i18n:astro";
+import { getDefaultLocale, getLocale, getLocalePlaceholder, t } from "i18n:astro";
 import { visiblePosts } from "~/lib/posts";
 import type { CollectionEntry } from "astro:content";
 
@@ -28,20 +28,15 @@ export async function getStaticPaths() {
     .filter((i) => i.posts.length)
 
     .map(({ category, posts }) => ({
-      params: { category: category.id.split("/").pop() },
+      params: { category: category.id },
       props: { category, posts },
     }));
 }
 
-interface Props {
-  category: CollectionEntry<"categories">;
-  posts: CollectionEntry<"posts">[];
-}
-
 const { category, posts } = Astro.props;
-
-const title = category.data.name;
-const description = category.data.description;
+const locale = getLocale();
+const defaultLocale = getDefaultLocale();
+const { description, name: title } = category.data[locale] || category.data[defaultLocale];
 ---
 
 <Layout
@@ -73,7 +68,7 @@ const description = category.data.description;
     <div class="canvas">
       <header class="pagehead">
         <p class="eyebrow">{t("categories:categoryEyebrow")}</p>
-        <h1 class="pagehead-title">{category}</h1>
+        <h1 class="pagehead-title">{title}</h1>
         <p class="pagehead-description">{description}</p>
         <p class="meta mt-5">
           <span>{t("categories:postCount", { count: posts.length })}</span>

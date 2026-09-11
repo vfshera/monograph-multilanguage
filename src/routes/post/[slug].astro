@@ -19,52 +19,37 @@ import {
   readingLabel,
   visiblePosts,
   type Post,
+  createSharableLinks,
 } from "~/lib/posts";
+import { getDefaultLocale, getLocale } from "i18n:astro";
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));
 
   return allPosts.map((post) => ({
     params: { slug: postSlug(post) },
-    props: { post, allPosts },
+    props: {
+      post,
+      relatedPosts: getRelated(allPosts, post),
+      adjacentPosts: getAdjacent(allPosts, post),
+    },
   }));
 }
 
-interface Props {
-  post: Post;
-  allPosts: Post[];
-}
-
-const { post, allPosts } = Astro.props;
+const locale = getLocale();
+const defaultLocale = getDefaultLocale();
+const { post, adjacentPosts, relatedPosts } = Astro.props;
 const { Content } = await render(post);
 const mdxComponents = { Callout, CodeGroup, CodeGroupItem };
 const data = post.data;
-const related = getRelated(allPosts, post);
-const { newer, older } = getAdjacent(allPosts, post);
+const { newer, older } = adjacentPosts;
 const authorHref = `/author/${authorSlug(data.author.name)}/`;
-const articleUrl = new URL(postHref(post), Astro.site).toString();
+const articleUrl = new URL(postHref(post), Astro.site);
 const socialImage = data.cover
   ? new URL(data.cover.src.src, Astro.site).toString()
   : new URL(siteConfig.socialImage, Astro.site).toString();
-const encodedUrl = encodeURIComponent(articleUrl);
-const encodedTitle = encodeURIComponent(data.title);
-const shareLinks: { label: string; icon: "twitter-x" | "facebook" | "linkedin"; href: string }[] = [
-  {
-    label: "X",
-    icon: "twitter-x",
-    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-  },
-  {
-    label: "Facebook",
-    icon: "facebook",
-    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-  },
-  {
-    label: "LinkedIn",
-    icon: "linkedin",
-    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-  },
-];
+const shareLinks = createSharableLinks(articleUrl, post.data.title);
+
 const category = await getEntry(data.category);
 ---
 
@@ -81,7 +66,7 @@ const category = await getEntry(data.category);
       dateModified: (data.updatedDate ?? data.date).toISOString(),
       author: { "@type": "Person", name: data.author.name },
       publisher: { "@type": "Organization", name: siteConfig.authorName },
-      mainEntityOfPage: articleUrl,
+      mainEntityOfPage: articleUrl.href,
     },
     {
       "@type": "BreadcrumbList",
@@ -90,7 +75,7 @@ const category = await getEntry(data.category);
         {
           "@type": "ListItem",
           position: 2,
-          name: category.data.name,
+          name: category.data[locale].name || category.data[defaultLocale].name,
           item: new URL(categoryHref(category.id), Astro.site!).toString(),
         },
         { "@type": "ListItem", position: 3, name: data.title },
@@ -109,7 +94,7 @@ const category = await getEntry(data.category);
               " "
             }
             <a href={categoryHref(category.id)} class="link-sweep post-meta__link"
-              >{data.category}</a
+              >{category.data[locale].name || category.data[defaultLocale].name}</a
             >
           </span>
           <span class="post-meta__dates">
@@ -238,13 +223,13 @@ const category = await getEntry(data.category);
     </article>
 
     {
-      related.length > 0 && (
-        <section class="canvas mt-[var(--space-section)]" aria-labelledby="keep-reading">
+      relatedPosts.length > 0 && (
+        <section class="canvas mt-(--space-section)" aria-labelledby="keep-reading">
           <h2 id="keep-reading" class="section-title">
             Keep reading
           </h2>
           <div class="grid gap-7">
-            {related.map((item) => (
+            {relatedPosts.map((item) => (
               <PostCard post={item} variant="compact" headingLevel="h3" />
             ))}
           </div>

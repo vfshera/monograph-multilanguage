@@ -5,13 +5,15 @@ import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
 import { categoryHref, getCategoryList, getFeatured, visiblePosts } from "~/lib/posts";
-import { t } from "i18n:astro";
+import { getLocale, t } from "i18n:astro";
 
 const allPosts = visiblePosts(await getCollection("posts"));
 const [latest, ...rest] = allPosts;
 const feed = rest.slice(0, 8);
 const featured = getFeatured(allPosts, 4).filter((post) => post.id !== latest?.id);
-const categoryList = getCategoryList(allPosts);
+const allCategories = await getCollection("categories");
+const locale = getLocale();
+const categoryList = getCategoryList(allPosts, allCategories, locale);
 const hasMore = rest.length > feed.length;
 ---
 
@@ -93,7 +95,7 @@ const hasMore = rest.length > feed.length;
                   {categoryList.map((category) => (
                     <li>
                       <a
-                        href={categoryHref(category.name)}
+                        href={categoryHref(category.slug)}
                         class="link-title flex items-center justify-between gap-3"
                       >
                         <span class="link-title__text text-base font-semibold tracking-tight">
