@@ -29,10 +29,6 @@ const headerLabel = page.customMetadata.headerLabel;
 <Layout
   title={page.meta.title || page.title}
   description={page.meta.description || page.description}
-  languageAlternates={Object.entries(page.alternate).map(([lang, altUrl]) => ({
-    hrefLang: lang,
-    href: new URL(altUrl, Astro.site!),
-  }))}
 >
   <div id="content" class="outer">
     <div class="canvas">

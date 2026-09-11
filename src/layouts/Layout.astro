@@ -3,13 +3,23 @@ import type { ComponentProps } from "astro/types";
 import BaseLayout from "./Base.astro";
 import SiteHeader from "~/components/SiteHeader.astro";
 import SiteFooter from "~/components/SiteFooter.astro";
+import { getSwitcherData } from "i18n:astro";
 
 interface Props extends ComponentProps<typeof BaseLayout> {}
 
 const { class: className, "class:list": classList, ...props } = Astro.props;
+
+const alternatePages = getSwitcherData().map((l) => ({
+  hrefLang: l.locale,
+  href: new URL(l.href, Astro.site),
+}));
 ---
 
-<BaseLayout {...props} class:list={["grid grid-rows-[auto_1fr_auto]", classList, className]}>
+<BaseLayout
+  languageAlternates={alternatePages}
+  {...props}
+  class:list={["grid grid-rows-[auto_1fr_auto]", classList, className]}
+>
   <slot name="head" slot="head" />
   <a class="skip-link" href="#content">Skip to content</a>
   <SiteHeader posts={[]} />
