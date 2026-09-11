@@ -1,7 +1,7 @@
 ---
 title: "Edge Runtime Cold Starts Are a Product Problem"
 excerpt: "A practical look at how small latency spikes become trust issues, and what engineering teams can do before the dashboard turns red."
-category: "en/cloud"
+category: "cloud"
 date: 2026-07-14
 updatedDate: 2026-07-15
 author:

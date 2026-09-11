@@ -1,7 +1,7 @@
 ---
 title: "What Product Teams Should Log by Default"
 excerpt: "Useful logs describe decisions, not just events. Start with the moments someone will need to explain later."
-category: "en/reliability"
+category: "reliability"
 date: 2026-07-04
 updatedDate: 2026-07-15
 author:
