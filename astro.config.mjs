@@ -46,6 +46,10 @@ export default defineConfig({
           de: "/datenschutz",
           "zh-CN": "/yinsi-zhengce",
         },
+        "/contact": {
+          "zh-CN": "/lian-xi-wo-men",
+          de: "/kontakt",
+        },
       },
     }),
   ],
