@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "AI",
+    "description": "Evaluations, model behavior, and applied automation that holds up in production."
+  },
+  "de": {
+    "name": "KI",
+    "description": "Evaluierungen, Modellverhalten und angewandte Automatisierung, die in der Produktion funktioniert."
+  },
+  "ar": {
+    "name": "الذكاء الاصطناعي",
+    "description": "التقييمات وسلوك النموذج والأتمتة المطبقة التي تثبت نتائجها في الإنتاج."
+  },
+  "zh-CN": {
+    "name": "人工智能",
+    "description": "评估、模型行为和在生产环境中经得起考验的应用自动化。"
+  }
+}

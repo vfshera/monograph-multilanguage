@@ -60,8 +60,12 @@ export const footerNavigation = [
 /**
  *  Available locales for the site.
  *
- *  Adjust to match what is available in i18n integration
+ *  Adjust to match what is available in i18n integration.
+ *
+ *  set the default locale as the first item.
  */
 export const locales = ["en", "ar", "zh-CN", "de"] as const;
+
+export const defaultLocale = locales[0];
 
 export const localeEnum = z.enum(locales);

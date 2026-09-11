@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Cloud",
+    "description": "Infrastructure, cost, and deploy pipelines that stay out of the way."
+  },
+  "de": {
+    "name": "Cloud",
+    "description": "Infrastruktur, Kosten und Deploy-Pipelines, die nicht im Weg stehen."
+  },
+  "ar": {
+    "name": "السحابة",
+    "description": "البنية التكلفة وخطوط النشر التي لا تُعيق العمل."
+  },
+  "zh-CN": {
+    "name": "云",
+    "description": "基础设施、成本和不妨碍团队的部署流水线。"
+  }
+}

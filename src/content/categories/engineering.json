@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Engineering",
+    "description": "Contracts, tooling, and the day-to-day craft of shipping software."
+  },
+  "de": {
+    "name": "Ingenieurwesen",
+    "description": "Verträge, Werkzeuge und das tägliche Handwerk der Softwareentwicklung."
+  },
+  "ar": {
+    "name": "الهندسة",
+    "description": "العقود والأدوات والحرفة اليومية لصناعة البرمجيات."
+  },
+  "zh-CN": {
+    "name": "工程",
+    "description": "合同、工具和日常软件交付的技艺。"
+  }
+}

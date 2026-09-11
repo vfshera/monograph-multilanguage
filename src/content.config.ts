@@ -1,7 +1,7 @@
 import { defineCollection, reference } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { localeEnum } from "~/config/site";
+import { localeEnum, defaultLocale } from "~/config/site";
 
 const alternateLangSchema = z.partialRecord(localeEnum, z.string()).default({});
 
@@ -19,12 +19,18 @@ const pages = defineCollection({
 });
 
 const categories = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.yml", base: "./src/content/categories" }),
-  schema: z.object({
-    name: z.string(),
-    description: z.string(),
-    alternate: alternateLangSchema,
-  }),
+  loader: glob({ pattern: "[^_]*.json", base: "./src/content/categories" }),
+  schema: z
+    .record(
+      localeEnum,
+      z.object({
+        name: z.string(),
+        description: z.string(),
+      }),
+    )
+    .refine((data) => defaultLocale in data, {
+      message: `Every category must include the default locale ('${defaultLocale}').`,
+    }),
 });
 
 const posts = defineCollection({
@@ -33,7 +39,6 @@ const posts = defineCollection({
     z.object({
       title: z.string(),
       excerpt: z.string(),
-      /** Must match one of the entries in src/config/categories.ts. */
       category: reference("categories"),
       date: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),

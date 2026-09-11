@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Reliability",
+    "description": "Incidents, observability, and the habits that keep systems honest."
+  },
+  "de": {
+    "name": "Zuverlässigkeit",
+    "description": "Vorfälle, Beobachtbarkeit und die Gewohnheiten, die Systeme ehrlich halten."
+  },
+  "ar": {
+    "name": "الموثوقية",
+    "description": "الحوادث والمراقبة والعادات التي تُبقي الأنظمة صادقة."
+  },
+  "zh-CN": {
+    "name": "可靠性",
+    "description": "事故、可观测性以及保持系统诚实的习惯。"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Design Systems",
+    "description": "Tokens, components, and the systems work that keeps interfaces coherent."
+  },
+  "de": {
+    "name": "Design-Systeme",
+    "description": "Tokens, Komponenten und die Systemarbeit, die Schnittstellen kohärent hält."
+  },
+  "ar": {
+    "name": "أنظمة التصميم",
+    "description": "الرموز والمكونات وعمل الأنظمة الذي يُبقي الواجهات متماسكة."
+  },
+  "zh-CN": {
+    "name": "设计系统",
+    "description": "Token、组件和保持界面一致性的系统工作。"
+  }
+}

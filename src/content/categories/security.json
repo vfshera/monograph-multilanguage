@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Security",
+    "description": "Authentication, privacy, and threat work explained for product teams."
+  },
+  "de": {
+    "name": "Sicherheit",
+    "description": "Authentifizierung, Datenschutz und Bedrohungsarbeit, erklärt für Produktteams."
+  },
+  "ar": {
+    "name": "الأمان",
+    "description": "المصادقة والخصوصية وعمل التهديدات مُبسَّط لفرق المنتجات."
+  },
+  "zh-CN": {
+    "name": "安全",
+    "description": "面向产品团队解释的身份认证、隐私和威胁工作。"
+  }
+}
