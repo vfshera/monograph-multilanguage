@@ -1,0 +1,14 @@
+{
+  "eyebrow": "فهرس",
+  "title": "المؤلفون",
+  "description": "الأشخاص الذين يكتبون لـ {{name}}.",
+  "authorEyebrow": "مؤلف",
+  "authorCount_one": "شخص واحد يكتب هنا.",
+  "authorCount_other": "{{count}} أشخاص يكتبون هنا.",
+  "postCount_one": "منشور واحد",
+  "postCount_other": "{{count}} منشورات",
+  "postDescription": "منشورات بواسطة {{name}}، {{role}}، على {{siteName}}.",
+  "authorPostCount": "{{role}} · {{count}} منشور",
+  "authorPostCount_other": "{{role}} · {{count}} منشورات",
+  "allAuthors": "جميع المؤلفين"
+}

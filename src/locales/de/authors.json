@@ -1,0 +1,14 @@
+{
+  "eyebrow": "Index",
+  "title": "Autoren",
+  "description": "Personen, die für {{name}} schreiben.",
+  "authorEyebrow": "Autor",
+  "authorCount_one": "Eine Person schreibt hier.",
+  "authorCount_other": "{{count}} Personen schreiben hier.",
+  "postCount_one": "{{count}} Beitrag",
+  "postCount_other": "{{count}} Beiträge",
+  "postDescription": "Beiträge von {{name}}, {{role}}, auf {{siteName}}.",
+  "authorPostCount": "{{role}} · {{count}} Beitrag",
+  "authorPostCount_other": "{{role}} · {{count}} Beiträge",
+  "allAuthors": "Alle Autoren"
+}
