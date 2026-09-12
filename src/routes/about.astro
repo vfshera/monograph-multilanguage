@@ -1,17 +1,17 @@
 ---
 import Layout from "~/layouts/Layout.astro";
 import { getEntry, render } from "astro:content";
-import { getLocale } from "i18n:astro";
+import { getLocale, getLocalePath } from "i18n:astro";
 
 const locale = getLocale();
 
-let slug = Astro.url.pathname.split("/").filter(Boolean).join("/").toLowerCase();
+let slug = getLocalePath("/about").replace(/^\//, "");
 
-if (!slug.startsWith(locale.toLowerCase())) {
-  slug = `${locale}/${slug}`.toLowerCase();
+if (!slug.startsWith(locale)) {
+  slug = `${locale}/${slug}`;
 }
 
-const entry = await getEntry("pages", slug);
+const entry = await getEntry("pages", slug.toLowerCase());
 
 if (!entry) {
   throw new Error(`Page not found: ${Astro.url.pathname}`);
