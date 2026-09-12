@@ -1,20 +1,16 @@
 ---
 import { getCollection } from "astro:content";
-import type { GetStaticPaths, Page } from "astro";
+import type { GetStaticPaths } from "astro";
 import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
-import { visiblePosts, type Post } from "~/lib/posts";
+import { visiblePosts } from "~/lib/posts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = visiblePosts(await getCollection("posts"));
 
   return paginate(posts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
-
-interface Props {
-  page: Page<Post>;
-}
 
 const { page } = Astro.props;
 const title = page.currentPage === 1 ? "Archive" : `Archive - Page ${page.currentPage}`;

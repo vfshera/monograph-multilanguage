@@ -6,7 +6,6 @@ import { siteConfig } from "~/config/site";
 
 import { getDefaultLocale, getLocale, getLocalePlaceholder, t } from "i18n:astro";
 import { visiblePosts } from "~/lib/posts";
-import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const locale = getLocalePlaceholder();
