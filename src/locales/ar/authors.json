@@ -2,13 +2,17 @@
   "eyebrow": "فهرس",
   "title": "المؤلفون",
   "description": "الأشخاص الذين يكتبون لـ {{name}}.",
-  "authorEyebrow": "مؤلف",
-  "authorCount_one": "شخص واحد يكتب هنا.",
-  "authorCount_other": "{{count}} أشخاص يكتبون هنا.",
-  "postCount_one": "منشور واحد",
-  "postCount_other": "{{count}} منشورات",
-  "postDescription": "منشورات بواسطة {{name}}، {{role}}، على {{siteName}}.",
-  "authorPostCount": "{{role}} · {{count}} منشور",
-  "authorPostCount_other": "{{role}} · {{count}} منشورات",
-  "allAuthors": "جميع المؤلفين"
+  "allAuthors": "جميع المؤلفين",
+  "author": {
+    "eyebrow": "مؤلف",
+    "count_one": "شخص واحد يكتب هنا.",
+    "count_other": "{{count}} أشخاص يكتبون هنا.",
+    "postCount": "{{role}} · {{count}} منشور",
+    "postCount_other": "{{role}} · {{count}} منشورات"
+  },
+  "post": {
+    "count_one": "منشور واحد",
+    "count_other": "{{count}} منشورات",
+    "description": "منشورات بواسطة {{name}}، {{role}}، على {{siteName}}."
+  }
 }

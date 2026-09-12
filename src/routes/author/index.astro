@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
 import { getAllAuthors, visiblePosts } from "~/lib/posts";
-import { t } from "i18n:astro";
+import { getLocalePath, t } from "i18n:astro";
 
 const allPosts = visiblePosts(await getCollection("posts"));
 const authorEntries = await getCollection("authors");
@@ -28,7 +28,7 @@ const authors = getAllAuthors(allPosts, authorEntries);
         <p class="eyebrow">{t("authors:eyebrow")}</p>
         <h1 class="pagehead-title">{t("authors:title")}</h1>
         <p class="pagehead-description">
-          {t("authors:authorCount", { count: authors.length })}
+          {t("authors:author.count", { count: authors.length })}
         </p>
       </header>
 
@@ -37,7 +37,7 @@ const authors = getAllAuthors(allPosts, authorEntries);
           authors.map((author) => (
             <li class="border-b border-border pb-5 last:border-b-0">
               <a
-                href={`/author/${author.slug}/`}
+                href={getLocalePath("/author/[author]", { author: author.slug })}
                 class="link-title flex items-baseline justify-between gap-4"
               >
                 <span>
@@ -47,7 +47,7 @@ const authors = getAllAuthors(allPosts, authorEntries);
                   <span class="mt-1 block text-sm text-muted-foreground">{author.role}</span>
                 </span>
                 <span class="pill shrink-0">
-                  {t("authors:postCount", { count: author.posts.length })}
+                  {t("authors:post.count", { count: author.posts.length })}
                 </span>
               </a>
             </li>

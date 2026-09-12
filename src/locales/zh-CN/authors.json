@@ -2,13 +2,17 @@
   "eyebrow": "索引",
   "title": "作者",
   "description": "为 {{name}} 撰稿的人。",
-  "authorEyebrow": "作者",
-  "authorCount_one": "有 {{count}} 人在此写作。",
-  "authorCount_other": "有 {{count}} 人在此写作。",
-  "postCount_one": "{{count}} 篇文章",
-  "postCount_other": "{{count}} 篇文章",
-  "postDescription": "{{name}}、{{role}} 在 {{siteName}} 上的文章。",
-  "authorPostCount": "{{role}} · {{count}} 篇文章",
-  "authorPostCount_other": "{{role}} · {{count}} 篇文章",
-  "allAuthors": "所有作者"
+  "allAuthors": "所有作者",
+  "author": {
+    "eyebrow": "作者",
+    "count_one": "有 {{count}} 人在此写作。",
+    "count_other": "有 {{count}} 人在此写作。",
+    "postCount": "{{role}} · {{count}} 篇文章",
+    "postCount_other": "{{role}} · {{count}} 篇文章"
+  },
+  "post": {
+    "count_one": "{{count}} 篇文章",
+    "count_other": "{{count}} 篇文章",
+    "description": "{{name}}、{{role}} 在 {{siteName}} 上的文章。"
+  }
 }

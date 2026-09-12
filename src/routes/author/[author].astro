@@ -3,33 +3,32 @@ import { getCollection } from "astro:content";
 import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
-import { getAllAuthors, visiblePosts, type Post } from "~/lib/posts";
+import { visiblePosts } from "~/lib/posts";
 import { t } from "i18n:astro";
+import { getEntries } from "astro:content";
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));
-  const authorEntries = await getCollection("authors");
 
-  return getAllAuthors(allPosts, authorEntries).map((author) => ({
-    params: { author: author.slug },
-    props: { author, allPosts },
-  }));
+  const authors = await getEntries(allPosts.map((post) => post.data.author));
+
+  return authors.map((a) => {
+    return {
+      params: { author: a.id },
+      props: {
+        author: { ...a.data, slug: a.id },
+        posts: allPosts.filter((post) => post.data.author.id === a.id),
+      },
+    };
+  });
 }
 
-interface Props {
-  author: { slug: string; name: string; role: string; posts: Post[] };
-  allPosts: Post[];
-}
-
-const { author, allPosts } = Astro.props;
-const posts = visiblePosts(allPosts).filter(
-  (post) => post.data.author.id === author.slug,
-);
+const { author, posts } = Astro.props;
 ---
 
 <Layout
   title={author.name}
-  description={t("authors:postDescription", {
+  description={t("authors:post.description", {
     name: author.name,
     role: author.role,
     siteName: siteConfig.name,
@@ -50,10 +49,10 @@ const posts = visiblePosts(allPosts).filter(
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">{t("authors:authorEyebrow")}</p>
+        <p class="eyebrow">{t("authors:author.eyebrow")}</p>
         <h1 class="pagehead-title">{author.name}</h1>
         <p class="pagehead-description">
-          {t("authors:authorPostCount", { role: author.role, count: posts.length })}
+          {t("authors:author.postCount", { role: author.role, count: posts.length })}
         </p>
       </header>
 

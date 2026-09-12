@@ -2,13 +2,17 @@
   "eyebrow": "Index",
   "title": "Authors",
   "description": "People who write for {{name}}.",
-  "authorEyebrow": "Author",
-  "authorCount_one": "{{count}} person writes here.",
-  "authorCount_other": "{{count}} people write here.",
-  "postCount_one": "{{count}} post",
-  "postCount_other": "{{count}} posts",
-  "postDescription": "Posts by {{name}}, {{role}}, on {{siteName}}.",
-  "authorPostCount": "{{role}} · {{count}} post",
-  "authorPostCount_other": "{{role}} · {{count}} posts",
-  "allAuthors": "All authors"
+  "allAuthors": "All authors",
+  "author": {
+    "eyebrow": "Author",
+    "count_one": "{{count}} person writes here.",
+    "count_other": "{{count}} people write here.",
+    "postCount": "{{role}} · {{count}} post",
+    "postCount_other": "{{role}} · {{count}} posts"
+  },
+  "post": {
+    "count_one": "{{count}} post",
+    "count_other": "{{count}} posts",
+    "description": "Posts by {{name}}, {{role}}, on {{siteName}}."
+  }
 }
