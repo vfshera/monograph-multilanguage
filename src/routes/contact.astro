@@ -9,12 +9,12 @@ const isEnabled = contact.enabled;
 ---
 
 <Layout
-  title={t("contact.title")}
-  description={t("contact.description", { name: siteConfig.name })}
+  title={t("contact:title")}
+  description={t("contact:description", { name: siteConfig.name })}
   structuredData={[
     {
       "@type": "ContactPage",
-      name: t("contact.title"),
+      name: t("contact:title"),
       url: new URL(Astro.url.pathname, Astro.site).toString(),
     },
   ]}
@@ -22,15 +22,15 @@ const isEnabled = contact.enabled;
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">{t("contact.eyebrow")}</p>
-        <h1 class="pagehead-title">{t("contact.heading")}</h1>
+        <p class="eyebrow">{t("contact:eyebrow")}</p>
+        <h1 class="pagehead-title">{t("contact:heading")}</h1>
         <p class="pagehead-description">
-          {t("contact.body", { responseTime: contact.responseTime })}
+          {t("contact:body", { responseTime: contact.responseTime })}
         </p>
         {
           siteConfig.email && (
             <p class="mt-4 text-sm text-muted-foreground">
-              {t("contact.form.email.prompt", { email: siteConfig.email })}{" "}
+              {t("contact:form.email.prompt", { email: siteConfig.email })}{" "}
               <a
                 href={`mailto:${siteConfig.email}`}
                 class="text-accent underline underline-offset-2"
@@ -51,7 +51,7 @@ const isEnabled = contact.enabled;
       >
         <div class="grid gap-2">
           <label class="text-sm font-semibold" for="contact-name"
-            >{t("contact.form.nameLabel")}</label
+            >{t("contact:form.nameLabel")}</label
           >
           <input
             id="contact-name"
@@ -66,7 +66,7 @@ const isEnabled = contact.enabled;
 
         <div class="grid gap-2">
           <label class="text-sm font-semibold" for="contact-email"
-            >{t("contact.form.email.label")}</label
+            >{t("contact:form.email.label")}</label
           >
           <input
             id="contact-email"
@@ -81,7 +81,7 @@ const isEnabled = contact.enabled;
 
         <div class="grid gap-2">
           <label class="text-sm font-semibold" for="contact-message"
-            >{t("contact.form.messageLabel")}</label
+            >{t("contact:form.messageLabel")}</label
           >
           <textarea
             id="contact-message"
@@ -94,7 +94,7 @@ const isEnabled = contact.enabled;
 
         <div class="flex flex-wrap items-center gap-4">
           <button type="submit" disabled={!isEnabled} class="btn btn-solid">
-            {isEnabled ? t("contact.form.submit.send") : t("contact.form.submit.unavailable")}
+            {isEnabled ? t("contact:form.submit.send") : t("contact:form.submit.unavailable")}
           </button>
           <p
             class="contact-status text-sm leading-relaxed text-muted-foreground"
@@ -108,7 +108,7 @@ const isEnabled = contact.enabled;
         {
           !isEnabled && (
             <p class="text-sm leading-relaxed text-muted-foreground">
-              {t("contact.disabledNotice")}
+              {t("contact:disabledNotice")}
             </p>
           )
         }
@@ -126,7 +126,7 @@ const isEnabled = contact.enabled;
     event.preventDefault();
     const status = form.querySelector("[data-contact-status]");
     if (status) {
-      status.textContent = t("contact.demoMessage");
+      status.textContent = t("contact:demoMessage");
     }
 
     form.reset();

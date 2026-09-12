@@ -45,27 +45,6 @@
     "socialOnLabel": "{{siteName}} on {{label}}",
     "builtWithPrefix": "Built with"
   },
-  "contact": {
-    "title": "Contact",
-    "description": "Get in touch with {{name}}.",
-    "eyebrow": "Contact",
-    "heading": "Get in touch",
-    "body": "Corrections, questions, and requests all land in the same inbox. {{responseTime}}",
-    "disabledNotice": "This form is disabled until a form endpoint is configured in siteConfig.contact.",
-    "demoMessage": "Thanks. This demo form is not connected to an endpoint yet, so nothing was sent.",
-    "form": {
-      "nameLabel": "Name",
-      "messageLabel": "Message",
-      "email": {
-        "label": "Email",
-        "prompt": "Prefer email? Write to {{email}}."
-      },
-      "submit": {
-        "send": "Send message",
-        "unavailable": "Form unavailable"
-      }
-    }
-  },
   "newsletter": {
     "title": "Get new posts by email",
     "description": "One email when something new goes up. No spam, unsubscribe anytime.",

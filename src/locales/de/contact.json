@@ -1,0 +1,21 @@
+{
+  "title": "Kontakt",
+  "description": "Nehmen Sie Kontakt mit {{name}} auf.",
+  "eyebrow": "Kontakt",
+  "heading": "Kontaktieren Sie uns",
+  "body": "Korrekturen, Fragen und Anfragen landen alle im selben Postfach. {{responseTime}}",
+  "disabledNotice": "Dieses Formular ist deaktiviert, bis ein Formular-Endpunkt in siteConfig.contact konfiguriert ist.",
+  "demoMessage": "Danke. Dieses Demo-Formular ist noch nicht mit einem Endpunkt verbunden, es wurde nichts gesendet.",
+  "form": {
+    "nameLabel": "Name",
+    "messageLabel": "Nachricht",
+    "email": {
+      "label": "E-Mail",
+      "prompt": "Bevorzugen Sie E-Mail? Schreiben Sie an {{email}}."
+    },
+    "submit": {
+      "send": "Nachricht senden",
+      "unavailable": "Formular nicht verfügbar"
+    }
+  }
+}

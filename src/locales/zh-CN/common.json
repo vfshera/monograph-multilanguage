@@ -45,27 +45,6 @@
     "socialOnLabel": "{{siteName}} 在 {{label}}",
     "builtWithPrefix": "使用以下技术构建"
   },
-  "contact": {
-    "title": "联系我们",
-    "description": "与 {{name}} 取得联系。",
-    "eyebrow": "联系我们",
-    "heading": "联系我们",
-    "body": "更正、问题和请求都会发送到同一个收件箱。{{responseTime}}",
-    "disabledNotice": "此表单已禁用，直到在 siteConfig.contact 中配置表单端点。",
-    "demoMessage": "感谢。此演示表单尚未连接到端点，因此没有发送任何内容。",
-    "form": {
-      "nameLabel": "姓名",
-      "messageLabel": "消息",
-      "email": {
-        "label": "电子邮件",
-        "prompt": "更喜欢电子邮件？请发送至 {{email}}。"
-      },
-      "submit": {
-        "send": "发送消息",
-        "unavailable": "表单不可用"
-      }
-    }
-  },
   "newsletter": {
     "title": "通过电子邮件获取新文章",
     "description": "有新内容时收到一封邮件。无垃圾邮件，随时可退订。",
