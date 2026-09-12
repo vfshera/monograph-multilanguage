@@ -1,4 +1,6 @@
 {
+  "postCount_one": "{{count}} منشور",
+  "postCount_other": "{{count}} منشورات",
   "header": {
     "nav": {
       "archive": "الأرشيف",
@@ -13,13 +15,13 @@
     "search": {
       "toggleLabel": "البحث في هذا الموقع",
       "formLabel": "البحث في الموقع",
-      "title": "البحث في {siteName}",
+      "title": "البحث في {{siteName}}",
       "label": "البحث في المنشورات",
       "placeholder": "ابحث في المنشورات والتصنيفات والكتّاب…",
       "closeLabel": "إغلاق البحث",
       "resultsHeading": "النتائج",
-      "resultCount_one": "نتيجة واحدة لـ «{query}».",
-      "resultCount_other": "{count} نتائج لـ «{query}».",
+      "resultCount_one": "نتيجة واحدة لـ «{{query}}».",
+      "resultCount_other": "{{count}} نتائج لـ «{{query}}».",
       "empty": "لا توجد منشورات مطابقة لذلك حتى الآن. جرّب عنوانًا أو موضوعًا أو اسم كاتب.",
       "hintNavigate": "تنقّل",
       "hintOpen": "فتح",
@@ -40,7 +42,7 @@
     },
     "rights": "جميع الحقوق محفوظة.",
     "socialRssLabel": "خلاصة RSS",
-    "socialOnLabel": "{siteName} على {label}",
+    "socialOnLabel": "{{siteName}} على {{label}}",
     "builtWithPrefix": "مبني باستخدام"
   },
   "contact": {

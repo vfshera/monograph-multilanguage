@@ -1,4 +1,6 @@
 {
+  "postCount_one": "{{count}} post",
+  "postCount_other": "{{count}} posts",
   "header": {
     "nav": {
       "archive": "Archive",
@@ -13,13 +15,13 @@
     "search": {
       "toggleLabel": "Search this site",
       "formLabel": "Site search",
-      "title": "Search {siteName}",
+      "title": "Search {{siteName}}",
       "label": "Search posts",
       "placeholder": "Search posts, categories, authors…",
       "closeLabel": "Close search",
       "resultsHeading": "Results",
-      "resultCount_one": "{count} result for “{query}”.",
-      "resultCount_other": "{count} results for “{query}”.",
+      "resultCount_one": "{{count}} result for “{{query}}”.",
+      "resultCount_other": "{{count}} results for “{{query}}”.",
       "empty": "No posts match that yet. Try a title, topic, or author.",
       "hintNavigate": "Navigate",
       "hintOpen": "Open",
@@ -40,7 +42,7 @@
     },
     "rights": "All rights reserved.",
     "socialRssLabel": "RSS feed",
-    "socialOnLabel": "{siteName} on {label}",
+    "socialOnLabel": "{{siteName}} on {{label}}",
     "builtWithPrefix": "Built with"
   },
   "contact": {

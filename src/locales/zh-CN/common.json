@@ -1,4 +1,6 @@
 {
+  "postCount_one": "{{count}} 篇文章",
+  "postCount_other": "{{count}} 篇文章",
   "header": {
     "nav": {
       "archive": "归档",
@@ -13,13 +15,13 @@
     "search": {
       "toggleLabel": "搜索此网站",
       "formLabel": "网站搜索",
-      "title": "搜索 {siteName}",
+      "title": "搜索 {{siteName}}",
       "label": "搜索文章",
       "placeholder": "搜索文章、分类、作者……",
       "closeLabel": "关闭搜索",
       "resultsHeading": "搜索结果",
-      "resultCount_one": "{count} 个结果与“{query}”匹配。",
-      "resultCount_other": "{count} 个结果与“{query}”匹配。",
+      "resultCount_one": "{{count}} 个结果与“{{query}}”匹配。",
+      "resultCount_other": "{{count}} 个结果与“{{query}}”匹配。",
       "empty": "暂时没有匹配的文章。试试搜索标题、主题或作者。",
       "hintNavigate": "导航",
       "hintOpen": "打开",
@@ -40,7 +42,7 @@
     },
     "rights": "版权所有。",
     "socialRssLabel": "RSS 订阅源",
-    "socialOnLabel": "{siteName} 在 {label}",
+    "socialOnLabel": "{{siteName}} 在 {{label}}",
     "builtWithPrefix": "使用以下技术构建"
   },
   "contact": {
