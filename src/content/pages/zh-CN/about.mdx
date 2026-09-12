@@ -1,10 +1,6 @@
 ---
-title: Monograph
-description: 一个安静的地方，用于撰写关于构建软件的长文。
-
-meta:
-  title: 关于我们
-  description: 关于 Monograph — 它发布什么以及谁在写作。
+title: 关于我们
+description: 关于 Monograph — 它发布什么以及谁在写作。
 
 customMetadata:
   headerLabel: 关于我们
@@ -13,7 +9,7 @@ customMetadata:
 import { siteConfig } from "~/config/site";
 import { getCollection } from "astro:content";
 import { getAllAuthors, visiblePosts } from "~/lib/posts";
-import { t } from "i18n:astro";
+import { t, getLocalePath } from "i18n:astro";
 
 export const allPosts = visiblePosts(await getCollection("posts"));
 export const authorEntries = await getCollection("authors");
@@ -32,8 +28,8 @@ export const authors = getAllAuthors(allPosts, authorEntries);
 <ul>
   {authors.map((author) => (
     <li>
-      <a href={`/author/${author.slug}/`}>{author.name}</a> — {author.role} (
-      {t("postCount", { count: author.posts.length })})
+      <a href={getLocalePath("/author/[author]", { author: author.slug })}>{author.name}</a> —{" "}
+      {author.role} ({t("postCount", { count: author.posts.length })})
     </li>
   ))}
 </ul>

@@ -1,10 +1,6 @@
 ---
-title: Monograph
-description: A quiet place for long-form writing about building software.
-
-meta:
-  title: About
-  description: About Monograph — what it publishes and who writes it.
+title: About
+description: About Monograph — what it publishes and who writes it.
 
 customMetadata:
   headerLabel: About
@@ -13,7 +9,7 @@ customMetadata:
 import { siteConfig } from "~/config/site";
 import { getCollection } from "astro:content";
 import { getAllAuthors, visiblePosts } from "~/lib/posts";
-import { t } from "i18n:astro";
+import { t, getLocalePath } from "i18n:astro";
 
 export const allPosts = visiblePosts(await getCollection("posts"));
 export const authorEntries = await getCollection("authors");
@@ -36,8 +32,8 @@ the post.
 <ul>
   {authors.map((author) => (
     <li>
-      <a href={`/author/${author.slug}/`}>{author.name}</a> — {author.role} (
-      {t("postCount", { count: author.posts.length })})
+      <a href={getLocalePath("/author/[author]", { author: author.slug })}>{author.name}</a> —{" "}
+      {author.role} ({t("postCount", { count: author.posts.length })})
     </li>
   ))}
 </ul>
