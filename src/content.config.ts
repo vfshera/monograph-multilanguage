@@ -7,6 +7,14 @@ const alternateLangSchema = z.partialRecord(localeEnum, z.string()).default({});
 
 const customMetadataSchema = z.record(z.string(), z.string()).default({});
 
+const authors = defineCollection({
+  loader: glob({ pattern: "[^_]*.yml", base: "./src/content/authors" }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+  }),
+});
+
 const pages = defineCollection({
   loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/pages" }),
   schema: z.object({
@@ -42,10 +50,7 @@ const posts = defineCollection({
       category: reference("categories"),
       date: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      author: z.object({
-        name: z.string(),
-        role: z.string(),
-      }),
+      author: reference("authors"),
       /**
        * Optional feature image. Monograph's post feeds are deliberately
        * text-only, so a cover is only ever shown on the post itself.
@@ -64,4 +69,4 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { posts, categories, pages };
+export const collections = { posts, categories, pages, authors };
