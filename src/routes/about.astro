@@ -1,21 +1,36 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
-import { siteConfig } from "~/config/site";
-import { authorSlug, getAllAuthors, visiblePosts } from "~/lib/posts";
+import { getEntry, render } from "astro:content";
+import { getLocale } from "i18n:astro";
 
-const allPosts = visiblePosts(await getCollection("posts"));
-const authors = getAllAuthors(allPosts);
+const locale = getLocale();
+
+let slug = Astro.url.pathname.split("/").filter(Boolean).join("/").toLowerCase();
+
+if (!slug.startsWith(locale.toLowerCase())) {
+  slug = `${locale}/${slug}`.toLowerCase();
+}
+
+const entry = await getEntry("pages", slug);
+
+if (!entry) {
+  throw new Error(`Page not found: ${Astro.url.pathname}`);
+}
+
+const { Content } = await render(entry);
+const page = entry.data;
+
+const headerLabel = page.customMetadata.headerLabel;
 ---
 
 <Layout
-  title="About"
-  description={`About ${siteConfig.name} — what it publishes and who writes it.`}
+  title={page.meta.title || page.title}
+  description={page.meta.description || page.description}
   structuredData={[
     {
       "@type": "AboutPage",
-      name: "About",
-      description: `About ${siteConfig.name} — what it publishes and who writes it.`,
+      name: page.meta.title || page.title,
+      description: page.meta.description || page.description,
       url: new URL(Astro.url.pathname, Astro.site!).toString(),
     },
   ]}
@@ -23,52 +38,15 @@ const authors = getAllAuthors(allPosts);
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">About</p>
-        <h1 class="pagehead-title">{siteConfig.name}</h1>
-        <p class="pagehead-description">{siteConfig.about}</p>
+        {headerLabel && <p class="eyebrow">{headerLabel}</p>}
+        <h1 class="pagehead-title">{page.title}</h1>
+        <p class="pagehead-description">
+          {page.description}
+        </p>
       </header>
 
       <div class="prose">
-        <h2>What gets published here</h2>
-        <p>
-          Long-form notes on building software: the decision behind a change, what it cost, and what
-          would be done differently next time. Posts are written to be read once, carefully, rather
-          than skimmed.
-        </p>
-
-        <h2>How it is written</h2>
-        <p>
-          Every post aims to be reproducible and honest about trade-offs. If something did not work,
-          that goes in too. Corrections are made in place, with the update date shown at the top of
-          the post.
-        </p>
-
-        <h2>Who writes it</h2>
-        <ul>
-          {
-            authors.map((author) => (
-              <li>
-                <a href={`/author/${authorSlug(author.name)}/`}>{author.name}</a> — {author.role} (
-                {author.posts.length} {author.posts.length === 1 ? "post" : "posts"})
-              </li>
-            ))
-          }
-        </ul>
-
-        <h2>Get in touch</h2>
-        <p>
-          Questions, corrections, and requests are welcome through the <a href="/contact/"
-            >contact page</a
-          >.
-        </p>
-        {
-          siteConfig.email && (
-            <p>
-              You can also email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>{" "}
-              directly.
-            </p>
-          )
-        }
+        <Content />
       </div>
     </div>
   </div>

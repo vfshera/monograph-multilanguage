@@ -1,0 +1,55 @@
+---
+title: Monograph
+description: A quiet place for long-form writing about building software.
+
+meta:
+  title: About
+  description: About Monograph — what it publishes and who writes it.
+
+customMetadata:
+  headerLabel: About
+---
+
+import { siteConfig } from "~/config/site";
+import { getCollection } from "astro:content";
+import { getAllAuthors, visiblePosts } from "~/lib/posts";
+import { t } from "i18n:astro";
+
+export const allPosts = visiblePosts(await getCollection("posts"));
+export const authorEntries = await getCollection("authors");
+export const authors = getAllAuthors(allPosts, authorEntries);
+
+## What gets published here
+
+Long-form notes on building software: the decision behind a change, what it cost, and what
+would be done differently next time. Posts are written to be read once, carefully, rather
+than skimmed.
+
+## How it is written
+
+Every post aims to be reproducible and honest about trade-offs. If something did not work,
+that goes in too. Corrections are made in place, with the update date shown at the top of
+the post.
+
+## Who writes it
+
+<ul>
+  {authors.map((author) => (
+    <li>
+      <a href={`/author/${author.slug}/`}>{author.name}</a> — {author.role} (
+      {t("postCount", { count: author.posts.length })})
+    </li>
+  ))}
+</ul>
+
+## Get in touch
+
+Questions, corrections, and requests are welcome through the <a href="/contact/">contact page</a>.
+
+{
+siteConfig.email && (
+  <p>
+    You can also email <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> directly.
+  </p>
+)
+}

@@ -50,6 +50,9 @@ export default defineConfig({
           "zh-CN": "/lian-xi-wo-men",
           de: "/kontakt",
         },
+        "/about": {
+          de: "/ueber-uns",
+        },
       },
     }),
   ],

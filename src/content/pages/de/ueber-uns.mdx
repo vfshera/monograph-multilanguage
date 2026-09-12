@@ -1,0 +1,51 @@
+---
+title: Monograph
+description: Ein ruhiger Ort für ausführliches Schreiben über Softwareentwicklung.
+
+meta:
+  title: Über uns
+  description: Über Monograph — was es veröffentlicht und wer schreibt.
+
+customMetadata:
+  headerLabel: Über uns
+---
+
+import { siteConfig } from "~/config/site";
+import { getCollection } from "astro:content";
+import { getAllAuthors, visiblePosts } from "~/lib/posts";
+import { t } from "i18n:astro";
+
+export const allPosts = visiblePosts(await getCollection("posts"));
+export const authorEntries = await getCollection("authors");
+export const authors = getAllAuthors(allPosts, authorEntries);
+
+## Was hier veröffentlicht wird
+
+Ausführliche Notizen zur Softwareentwicklung: die Entscheidung hinter einer Änderung, was sie gekostet hat und was beim nächsten Mal anders gemacht würde. Beiträge werden so geschrieben, dass man sie einmal liest, sorgfältig,而不是 überfliegt.
+
+## Wie es geschrieben wird
+
+Jeder Beitrag zielt darauf ab, reproduziert zu sein und ehrlich über Kompromisse zu sein. Wenn etwas nicht funktioniert hat, kommt das ebenfalls hinein. Korrekturen werden direkt vorgenommen, mit dem Aktualisierungsdatum oben im Beitrag.
+
+## Wer schreibt
+
+<ul>
+  {authors.map((author) => (
+    <li>
+      <a href={`/author/${author.slug}/`}>{author.name}</a> — {author.role} (
+      {t("postCount", { count: author.posts.length })})
+    </li>
+  ))}
+</ul>
+
+## Kontaktieren Sie uns
+
+Fragen, Korrekturen und Anfragen sind willkommen über die <a href="/contact/">Kontaktseite</a>.
+
+{
+siteConfig.email && (
+  <p>
+    Sie können auch direkt an <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> schreiben.
+  </p>
+)
+}

@@ -1,0 +1,51 @@
+---
+title: Monograph
+description: 一个安静的地方，用于撰写关于构建软件的长文。
+
+meta:
+  title: 关于我们
+  description: 关于 Monograph — 它发布什么以及谁在写作。
+
+customMetadata:
+  headerLabel: 关于我们
+---
+
+import { siteConfig } from "~/config/site";
+import { getCollection } from "astro:content";
+import { getAllAuthors, visiblePosts } from "~/lib/posts";
+import { t } from "i18n:astro";
+
+export const allPosts = visiblePosts(await getCollection("posts"));
+export const authorEntries = await getCollection("authors");
+export const authors = getAllAuthors(allPosts, authorEntries);
+
+## 这里发布什么
+
+关于构建软件的长篇笔记：变更背后的决策、代价以及下次会如何做得不同。文章写出来是供仔细阅读而非快速浏览的。
+
+## 如何撰写
+
+每篇文章都力求可复现且诚实地面对权衡。如果某些方法行不通，也会如实记录。更正直接在原文修改，更新日期显示在文章顶部。
+
+## 谁在写
+
+<ul>
+  {authors.map((author) => (
+    <li>
+      <a href={`/author/${author.slug}/`}>{author.name}</a> — {author.role} (
+      {t("postCount", { count: author.posts.length })})
+    </li>
+  ))}
+</ul>
+
+## 联系我们
+
+问题、更正和请求欢迎通过<a href="/contact/">联系页面</a>提交。
+
+{
+siteConfig.email && (
+  <p>
+    您也可以直接发送邮件至 <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>。
+  </p>
+)
+}

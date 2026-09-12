@@ -1,0 +1,51 @@
+---
+title: مونوغراف
+description: مكان هادئ للكتابة المطولة حول بناء البرمجيات.
+
+meta:
+  title: من نحن
+  description: عن مونوغراف — ما ينشره ومن يكتبه.
+
+customMetadata:
+  headerLabel: من نحن
+---
+
+import { siteConfig } from "~/config/site";
+import { getCollection } from "astro:content";
+import { getAllAuthors, visiblePosts } from "~/lib/posts";
+import { t } from "i18n:astro";
+
+export const allPosts = visiblePosts(await getCollection("posts"));
+export const authorEntries = await getCollection("authors");
+export const authors = getAllAuthors(allPosts, authorEntries);
+
+## ما يُنشر هنا
+
+ملاحظات مطولة حول بناء البرمجيات: القرار وراء التغيير، ما تكلفه، وما كان ينبغي فعله بشكل مختلف في المرة القادمة. تُكتب المقالات لتُقرأ مرة واحدة بعناية، وليس لتُمرَّ عليها نظرة سريعة.
+
+## كيف تُكتب
+
+يهدف كل مقال إلى أن يكون قابلاً للتحسين وم honest بشأن المقايضات. إذا لم ينجح شيء، فذلك يُذكر أيضًا. تُجرَّ الإصلاحات في المكان نفسه، مع عرض تاريخ التحديث في أعلى المقال.
+
+## من يكتب
+
+<ul>
+  {authors.map((author) => (
+    <li>
+      <a href={`/author/${author.slug}/`}>{author.name}</a> — {author.role} (
+      {t("postCount", { count: author.posts.length })})
+    </li>
+  ))}
+</ul>
+
+## تواصل معنا
+
+الأسئلة والتصحيحات والطلبات مرحب بها من خلال <a href="/contact/">صفحة الاتصال</a>.
+
+{
+siteConfig.email && (
+  <p>
+    يمكنك أيضًا إرسال بريد إلكتروني مباشرة إلى <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+  </p>
+)
+}
