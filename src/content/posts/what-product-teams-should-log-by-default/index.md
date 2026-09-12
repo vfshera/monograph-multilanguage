@@ -4,9 +4,7 @@ excerpt: "Useful logs describe decisions, not just events. Start with the moment
 category: "reliability"
 date: 2026-07-04
 updatedDate: 2026-07-15
-author:
-  name: "Evan Brooks"
-  role: "Security and reliability"
+author: evan-brooks
 cover:
   src: "./cover.jpg"
   alt: "Abstract flowing waves of purple and white light"

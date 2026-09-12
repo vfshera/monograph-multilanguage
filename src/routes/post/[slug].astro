@@ -9,7 +9,6 @@ import CodeGroup from "~/components/mdx/CodeGroup.astro";
 import CodeGroupItem from "~/components/mdx/CodeGroupItem.astro";
 import { siteConfig } from "~/config/site";
 import {
-  authorSlug,
   categoryHref,
   formatDate,
   getAdjacent,
@@ -43,7 +42,8 @@ const { Content } = await render(post);
 const mdxComponents = { Callout, CodeGroup, CodeGroupItem };
 const data = post.data;
 const { newer, older } = adjacentPosts;
-const authorHref = `/author/${authorSlug(data.author.name)}/`;
+const authorEntry = await getEntry(data.author);
+const authorHref = `/author/${data.author.id}/`;
 const articleUrl = new URL(postHref(post), Astro.site);
 const socialImage = data.cover
   ? new URL(data.cover.src.src, Astro.site).toString()
@@ -64,7 +64,7 @@ const category = await getEntry(data.category);
       image: socialImage,
       datePublished: data.date.toISOString(),
       dateModified: (data.updatedDate ?? data.date).toISOString(),
-      author: { "@type": "Person", name: data.author.name },
+      author: { "@type": "Person", name: authorEntry.data.name },
       publisher: { "@type": "Organization", name: siteConfig.authorName },
       mainEntityOfPage: articleUrl.href,
     },
@@ -90,7 +90,7 @@ const category = await getEntry(data.category);
       <header class="canvas pt-10 md:pt-14">
         <p class="meta post-meta">
           <span class="post-meta__byline">
-            By <a href={authorHref} class="link-sweep post-meta__link">{data.author.name}</a> in{
+            By <a href={authorHref} class="link-sweep post-meta__link">{authorEntry.data.name}</a> in{
               " "
             }
             <a href={categoryHref(category.id)} class="link-sweep post-meta__link"

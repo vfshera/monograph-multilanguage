@@ -3,9 +3,7 @@ title: "Queue Design for Humans, Not Just Workers"
 excerpt: "Background jobs need more than throughput. They need clear ownership, visible delay, and failure modes support teams can explain."
 category: "engineering"
 date: 2026-07-12
-author:
-  name: "Leah Morgan"
-  role: "Design systems and craft"
+author: leah-morgan
 cover:
   src: "./cover.jpg"
   alt: "Abstract flowing purple and white light patterns"

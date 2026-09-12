@@ -16,12 +16,15 @@ export async function GET() {
     allCategories.map((c) => [c.id, (c.data[locale] ?? c.data[defaultLocale]).name]),
   );
 
+  const allAuthors = await getCollection("authors");
+  const authorNameMap = new Map(allAuthors.map((a) => [a.id, a.data.name]));
+
   const posts = visiblePosts(await getCollection("posts"));
   const index = posts.map((post) => ({
     title: post.data.title,
     excerpt: post.data.excerpt,
     href: postHref(post),
-    author: post.data.author.name,
+    author: authorNameMap.get(post.data.author.id) ?? "",
     category: categoryNameMap.get(post.data.category.id) ?? "",
     date: formatDate(post.data.date),
     reading: readingLabel(post),

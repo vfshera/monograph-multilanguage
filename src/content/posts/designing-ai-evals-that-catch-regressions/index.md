@@ -3,9 +3,7 @@ title: "Designing AI Evals That Catch Regressions"
 excerpt: "Small, human-readable eval sets can catch product regressions earlier than giant scoreboards that nobody trusts."
 category: "ai"
 date: 2026-07-13
-author:
-  name: "Iris Novak"
-  role: "Cloud and platform"
+author: iris-novak
 cover:
   src: "./cover.jpg"
   alt: "Abstract purple, white, and orange gradient light"

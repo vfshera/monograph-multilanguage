@@ -3,14 +3,14 @@ import type { Locale } from "i18n:astro";
 import { siteConfig } from "~/config/site";
 
 export type Post = CollectionEntry<"posts">;
+export type Author = CollectionEntry<"authors">;
 
-export const authorSlug = (author: string) =>
-  author
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-");
+export type AuthorWithPosts = {
+  slug: string;
+  name: string;
+  role: string;
+  posts: Post[];
+};
 
 export const categoryHref = (slug: string) => `/category/${slug}/`;
 
@@ -83,24 +83,23 @@ export const getAdjacent = (posts: Post[], current: Post) => {
   };
 };
 
-export const getAllAuthors = (posts: Post[]) =>
-  Array.from(
-    visiblePosts(posts)
-      .reduce((authors, post) => {
-        const slug = authorSlug(post.data.author.name);
-        const current = authors.get(slug);
-        authors.set(slug, {
-          name: post.data.author.name,
-          role: post.data.author.role,
-          posts: [...(current?.posts ?? []), post],
-        });
+export const getAllAuthors = (
+  posts: Post[],
+  authorEntries: Author[],
+): AuthorWithPosts[] => {
+  const visible = visiblePosts(posts);
+  const byId = new Map(authorEntries.map((e) => [e.id, e]));
 
-        return authors;
-      }, new Map<string, { name: string; role: string; posts: Post[] }>())
-      .entries(),
-  )
-    .map(([slug, author]) => ({ slug, ...author }))
+  return authorEntries
+    .map((entry) => ({
+      slug: entry.id,
+      name: entry.data.name,
+      role: entry.data.role,
+      posts: visible.filter((post) => post.data.author.id === entry.id),
+    }))
+    .filter((a) => a.posts.length > 0)
     .sort((a, b) => b.posts.length - a.posts.length || a.name.localeCompare(b.name));
+};
 
 export const formatDate = (date: Date, style: "short" | "long" = "short") =>
   new Intl.DateTimeFormat(siteConfig.dateLocale, {

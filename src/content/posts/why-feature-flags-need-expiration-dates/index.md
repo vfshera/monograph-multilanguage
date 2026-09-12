@@ -3,9 +3,7 @@ title: "Why Feature Flags Need Expiration Dates"
 excerpt: "Flags make releases safer until they become permanent branches in the product. Add ownership and removal dates before they calcify."
 category: "engineering"
 date: 2026-07-10
-author:
-  name: "Iris Novak"
-  role: "Cloud and platform"
+author: iris-novak
 cover:
   src: "./cover.jpg"
   alt: "Blue and purple abstract fluid shapes with neon glow"

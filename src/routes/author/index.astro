@@ -3,19 +3,21 @@ import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
 import { getAllAuthors, visiblePosts } from "~/lib/posts";
+import { t } from "i18n:astro";
 
 const allPosts = visiblePosts(await getCollection("posts"));
-const authors = getAllAuthors(allPosts);
+const authorEntries = await getCollection("authors");
+const authors = getAllAuthors(allPosts, authorEntries);
 ---
 
 <Layout
-  title="Authors"
-  description={`People who write for ${siteConfig.name}.`}
+  title={t("authors:title")}
+  description={t("authors:description", { name: siteConfig.name })}
   structuredData={[
     {
       "@type": "CollectionPage",
-      name: "Authors",
-      description: `People who write for ${siteConfig.name}.`,
+      name: t("authors:title"),
+      description: t("authors:description", { name: siteConfig.name }),
       url: new URL(Astro.url.pathname, Astro.site!).toString(),
     },
   ]}
@@ -23,11 +25,10 @@ const authors = getAllAuthors(allPosts);
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">Index</p>
-        <h1 class="pagehead-title">Authors</h1>
+        <p class="eyebrow">{t("authors:eyebrow")}</p>
+        <h1 class="pagehead-title">{t("authors:title")}</h1>
         <p class="pagehead-description">
-          {authors.length}
-          {authors.length === 1 ? "person writes" : "people write"} here.
+          {t("authors:authorCount", { count: authors.length })}
         </p>
       </header>
 
@@ -46,7 +47,7 @@ const authors = getAllAuthors(allPosts);
                   <span class="mt-1 block text-sm text-muted-foreground">{author.role}</span>
                 </span>
                 <span class="pill shrink-0">
-                  {author.posts.length} {author.posts.length === 1 ? "post" : "posts"}
+                  {t("authors:postCount", { count: author.posts.length })}
                 </span>
               </a>
             </li>

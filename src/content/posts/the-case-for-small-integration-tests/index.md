@@ -3,9 +3,7 @@ title: "The Case for Small Integration Tests"
 excerpt: "A narrow integration test can catch contract drift without turning the suite into a slow imitation of production."
 category: "engineering"
 date: 2026-07-08
-author:
-  name: "Leah Morgan"
-  role: "Design systems and craft"
+author: leah-morgan
 cover:
   src: "./cover.jpg"
   alt: "Blurry blue and yellow abstract background"

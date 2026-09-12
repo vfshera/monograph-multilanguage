@@ -4,9 +4,7 @@ excerpt: "A practical look at how small latency spikes become trust issues, and 
 category: "cloud"
 date: 2026-07-14
 updatedDate: 2026-07-15
-author:
-  name: "Iris Novak"
-  role: "Cloud and platform"
+author: iris-novak
 cover:
   src: "./cover.jpg"
   alt: "Blurry blue and white abstract background"

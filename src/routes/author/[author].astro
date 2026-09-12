@@ -3,12 +3,14 @@ import { getCollection } from "astro:content";
 import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 import { siteConfig } from "~/config/site";
-import { authorSlug, getAllAuthors, visiblePosts, type Post } from "~/lib/posts";
+import { getAllAuthors, visiblePosts, type Post } from "~/lib/posts";
+import { t } from "i18n:astro";
 
 export async function getStaticPaths() {
   const allPosts = visiblePosts(await getCollection("posts"));
+  const authorEntries = await getCollection("authors");
 
-  return getAllAuthors(allPosts).map((author) => ({
+  return getAllAuthors(allPosts, authorEntries).map((author) => ({
     params: { author: author.slug },
     props: { author, allPosts },
   }));
@@ -21,13 +23,17 @@ interface Props {
 
 const { author, allPosts } = Astro.props;
 const posts = visiblePosts(allPosts).filter(
-  (post) => authorSlug(post.data.author.name) === author.slug,
+  (post) => post.data.author.id === author.slug,
 );
 ---
 
 <Layout
   title={author.name}
-  description={`Posts by ${author.name}, ${author.role}, on ${siteConfig.name}.`}
+  description={t("authors:postDescription", {
+    name: author.name,
+    role: author.role,
+    siteName: siteConfig.name,
+  })}
   structuredData={[
     {
       "@type": "ProfilePage",
@@ -44,11 +50,10 @@ const posts = visiblePosts(allPosts).filter(
   <div id="content" class="outer">
     <div class="canvas">
       <header class="pagehead">
-        <p class="eyebrow">Author</p>
+        <p class="eyebrow">{t("authors:authorEyebrow")}</p>
         <h1 class="pagehead-title">{author.name}</h1>
         <p class="pagehead-description">
-          {author.role} &middot; {posts.length}
-          {posts.length === 1 ? "post" : "posts"}
+          {t("authors:authorPostCount", { role: author.role, count: posts.length })}
         </p>
       </header>
 
@@ -56,7 +61,7 @@ const posts = visiblePosts(allPosts).filter(
         {posts.map((post) => <PostCard post={post} />)}
       </div>
 
-      <a href="/author/" class="btn btn-outline btn-block mt-16">All authors</a>
+      <a href="/author/" class="btn btn-outline btn-block mt-16">{t("authors:allAuthors")}</a>
     </div>
   </div>
 </Layout>

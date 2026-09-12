@@ -3,9 +3,7 @@ title: "API Versioning Without Making Everyone Angry"
 excerpt: "Versioning is a communication problem first. The technical shape only works when consumers can predict what changes and when."
 category: "engineering"
 date: 2026-07-06
-author:
-  name: "Evan Brooks"
-  role: "Security and reliability"
+author: evan-brooks
 cover:
   src: "./cover.jpg"
   alt: "Purple and blue abstract light streaks"
